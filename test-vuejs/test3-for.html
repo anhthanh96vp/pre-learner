@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-for</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" </head>
+
+</head>
+
+<body>
+    <div id="app">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <h1>Bảng cửu chương x {{ number }}</h1>
+                </div>
+                <div class="col-md-12 text-center">
+                    <input class="form-control" v-model="number">
+                </div>
+                <div style="font-size: 25px;" class="col-md-2" v-for="i in 12">
+                    {{ i }} x {{ number }} = {{ i * number }}
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+    <script type="text/javascript">
+        new Vue({
+            el: '#app',
+            data: {
+                number: 9
+            }
+        })
+    </script>
+</body>
+
+</body>
+
+</html>

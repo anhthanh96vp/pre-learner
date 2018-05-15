@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-if v-show</title>
+</head>
+
+<body>
+    <div id="app">
+            <h1>Ví dụ v-if</h1>
+            <h1 v-if="user.email == '123@gmail.com' && user.password == '123456'" style="color: green;">Đăng nhập thành công</h1>
+            <h2 v-else="user.email != '123@gmail.com' || user.password != '123456'" style="color: red;">Đăng nhập thất bại</h2>
+            
+
+            <label for="input1">Email</label>
+            <input v-model="user.email" id="input1" placeholder="123@gmail.com">
+            <label for="input2">Mật khẩu</label>
+            <input v-model="user.password" id="input2" placeholder="123456">
+
+
+            <h1>Ví dụ v-show</h1>
+            <h1 v-show="user.email == '123@gmail.com' && user.password == '123456'" style="color: green;">Đăng nhập thành công</h1>
+            <h2 v-show="user.email != '123@gmail.com' || user.password != '123456'" style="color: red;">Đăng nhập thất bại</h2>          
+
+            <label for="input1">Email</label>
+            <input v-model="user.email" id="input1" placeholder="123@gmail.com">
+            <label for="input2">Mật khẩu</label>
+            <input v-model="user.password" id="input2" placeholder="123456">
+
+
+
+    </div>
+
+
+
+
+
+    <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+    <script type="text/javascript">
+        new Vue({
+            el: '#app',
+            data: {
+                user: {}
+            }
+
+        })
+
+    </script>
+
+</body>
+
+</html>

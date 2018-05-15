@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Ví dụ đầu tiên Vue.js - allaravel.com</title>
+    <style>
+        img {
+            width: 50%;
+        }
+        button{
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{ message }}</h1>
+        <input v-model="message">
+        <h1 v-html="message2"></h1>
+        <input v-model="message2">
+        <div>
+
+                <img v-bind:src="imgVuejs">
+                <img :src="imgVuejs">
+                <p> Thành tiền: {{ quantity * price }}đ </p>
+                <button v-on:click="functionTest">v-on</button>
+                <button @click="functionTest">v-on2</button>
+        
+        </div>
+
+    </div>
+
+
+
+    <script src="https://vuejs.org/js/vue.min.js"></script>
+    <script type="text/javascript">
+        new Vue({
+            el: '#app',
+            data: {
+                imgVuejs: 'img.jpg',
+                message: 'Xin chào, tôi là Vue.js',
+                message2: 'Xin chao, toi la <span style="color: green;">Vue</span>.js',
+                quantity: 50,
+                price: 2,
+                functionTest(){
+                    console.log(this.Vue)
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

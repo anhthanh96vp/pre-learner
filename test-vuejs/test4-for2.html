@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div class="container">
+        <div id="app" class="row">
+            <div class="col-md-12">
+                <h1 class="text-center" style="color: grey;"> {{ tieude }} </h1>
+            </div>
+            <div class="col-md-3" v-for="(monan, index) in monanngon">
+                <h3>{{index +1}} {{monan}} </h3>
+            </div>
+
+            <div class="col-md-12" v-for="(index, value, key) in user">
+                    {{key}}.  {{value}}: {{index}}
+            </div>
+
+
+            <div style="padding-top: 200px;" class="col-md-3" v-for="(produc, index) in products">
+                <h3> {{produc.name}} </h3>
+                <img style="width: 100%;" v-bind:src="produc.image">
+                <p> {{produc.price}} </p>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                tieude: 'Món ăn hôm nay',
+                monanngon: [
+                    'Bún chả',
+                    'Phở bò',
+                    'Cơm sườn',
+                    'Chưa nghĩ ra'
+                ],
+                user: {
+                    name: 'Nguyễn Văn A',
+                    email: 'nguyenvana@allaravel.com',
+                    phone: '0904123456',
+                    joinedDate: '15/03/2017',
+                    location: 'Hà Nội'
+                },
+                products: [
+                    { name: 'Đèn led âm trần LIPER 8W series E', image: 'http://bigi.vn/public/images/products/liper/downlight/LP-DL08EW03-Y1.png', url: 'http://bigi.vn/san-pham/led-am-tran-sieu-mong-liper-8w-anh-sang-trang-lo-cat-%CF%8690-110mm-ma-lp-dl08ew03-y1', price: '161,000đ' },
+                    { name: 'Đèn led âm trần LIPER 7W series F', image: 'http://bigi.vn/public/images/products/liper/downlight/LPDL-07A01-YX.png', url: 'http://bigi.vn/san-pham/led-am-tran-liper-7w-anh-sang-vang-lo-cat-%CF%8675-85mm-ma-lpdl-07a01-yx-w', price: '209,000đ' },
+                    { name: 'Đèn led âm trần LIPER 10W series A', image: 'http://bigi.vn/public/images/products/liper/downlight/LPDL-10A01-YX.png', url: 'http://bigi.vn/san-pham/led-am-tran-liper-10w-anh-sang-trang-lo-cat-%CF%8695-105mm-ma-lpdl-10a01-yx-c', price: '257,000đ' },
+                    { name: 'Đèn led ốp trần LIPER 12W', image: 'http://bigi.vn/public/images/products/liper/downlight/LPDL-12K01-YE-00.png', url: 'http://bigi.vn/san-pham/led-op-tran-liper-12w-anh-sang-trang-tron-%CF%86153x58mm-ma-lp-dl12k01-ye-c', price: '402,000đ' },
+                    { name: 'Đèn led pha LIPER 10W', image: 'http://bigi.vn/public/images/products/liper/flood/LPFL-10A-00.png', url: 'http://bigi.vn/san-pham/led-pha-sieu-ben-dep-liper-10w-mau-den-anh-sang-trang-ma-lpfl-10x01-c', price: '232,000đ' },
+                    { name: 'Đèn led pha LIPER công suất lớn 100W', image: 'http://bigi.vn/public/images/products/liper/flood/LPFL-100A-X2-00.png', url: 'http://bigi.vn/san-pham/led-pha-sieu-ben-dep-liper-100w-mau-trang-anh-sang-trang-ma-lpfl-100x21-c', price: '1,262,000đ' },
+                    { name: 'Đèn led phượt LIPER 30W pin 8 tiếng', image: 'http://bigi.vn/public/image/product/p00943/den-led-pha-flood-light-lpfl-30k01-co-the-su-dung-sac-o-to-1000x1000.jpg', url: 'http://bigi.vn/san-pham/den-led-pha-liper-lpfl-30k01-30w', price: '1,262,000đ' },
+                    { name: 'Đèn đường công nghệ LED 200W', image: 'http://bigi.vn/public/image/product/p00942/led-den-duong-liper-lpstl-200a01-200w-chieu-sang-cong-cong-chieu-sang-do-thi-1000x1000.jpg', url: 'http://bigi.vn/san-pham/led-den-duong-liper-lpstl-200a01-cong-suat-200w', price: 'Liên hệ' }
+                ]
+                
+
+            }
+        })
+    </script>
+
+</body>
+
+</html>

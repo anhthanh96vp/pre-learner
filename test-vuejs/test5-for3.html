@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div class="container" id="app">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h1 style="color: green">Những bài viết được xem nhiều</h1>
+            </div>
+            <div class="col-md-4" v-for="ok in mostViewedCategories">
+                <div>
+                    <h3 style="color: red"> {{ok.name}} </h3>
+                </div>
+                <div v-for=" ok2 in ok.posts">
+                    {{ok2.title}} 
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                mostViewedCategories: [
+                    {
+                        name: 'Kiến thức framework Laravel',
+                        posts: [
+                            { title: 'Học Laravel 5 miễn phí', url: 'https://allaravel.com/laravel-tutorials/khoa-hoc-laravel-5-mien-phi/' },
+                            { title: 'Tìm kiếm thông minh với Typeahead trong ứng dụng Laravel', url: 'https://allaravel.com/laravel-tutorials/tim-kiem-thong-minh-voi-typeahead-trong-ung-dung-laravel/' },
+                            { title: 'Xác thực API bằng OAuth2 với Laravel Passport', url: 'https://allaravel.com/laravel-tutorials/xac-thuc-api-bang-oauth-2-voi-laravel-passport/' }
+                        ]
+                    },
+                    {
+                        name: 'Kiến thức framework Vue.js',
+                        posts: [
+                            { title: 'Khóa học Vue.js miễn phí', url: 'https://allaravel.com/tutorials/vuejs-framework/khoa-hoc-vue-js-2-mien-phi/' },
+                            { title: 'Series Xây dựng diễn đàn dạng đơn trang với Vuejs', url: 'https://allaravel.com/laravel-tutorials/xay-dung-forum-dang-spa-voi-laravel-va-vue-js/' },
+                            { title: 'Vue.js là gì?', url: 'https://allaravel.com/tutorials/vuejs-framework/gioi-thieu-framework-vue-js/' }
+                        ]
+                    },
+                    {
+                        name: 'Design Pattern',
+                        posts: [
+                            { title: 'Inversion of Control nguyên lý của các nguyên lý', url: 'https://allaravel.com/tutorials/inversion-of-control-nguyen-ly-cua-cac-nguyen-ly/' },
+                            { title: 'Design Pattern sự tiến hóa trong lập trình', url: 'https://allaravel.com/tutorials/design-pattern-su-tien-hoa-trong-lap-trinh/' },
+                            { title: 'SOLID 5 nguyên lý vàng trong thiết kế hướng đối tượng', url: 'https://allaravel.com/laravel-tutorials/solid-5-nguyen-ly-vang-trong-thiet-ke-huong-doi-tuong/' }
+                        ]
+                    }
+                ]
+            }
+        })
+    </script>
+</body>
+
+</html>
