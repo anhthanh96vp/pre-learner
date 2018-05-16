@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Phương thức</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container" id="app">
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Họ tên</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Số điện thoại</th>
+                            <th scope="col">Nơi ở</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(user, index) in users" v-if="user.active">
+                            <th scope="row">{{ index }}</th>
+                            <td>{{ user.name }}</td>
+                            <td>{{ user.email }}</td>
+                            <td>{{ user.phone }}</td>
+                            <td>{{ user.location }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+    <script type="text/javascript">
+        var vue = new Vue({
+            el: '#app',
+            data: {
+                users: [
+                    { name: 'Nguyễn Văn Minh', email: 'minhnv@allaravel.com', phone: '0904123456', location: 'Hà Nội', active: 1 },
+                    { name: 'Trần Mộng Tú', email: 'tutm@allaravel.com', phone: '0904123456', location: 'Sài Gòn', active: 1 },
+                    { name: 'Lê Viết Xuân', email: 'xuanlv@allaravel.com', phone: '0904123456', location: 'Quảng Nam', active: 0 },
+                    { name: 'Nguyễn Đức Tuấn', email: 'tuannd@allaravel.com', phone: '0904123456', location: 'Quảng Ninh', active: 1 },
+                    { name: 'Đinh Mạnh Dũng', email: 'dungdm@allaravel.com', phone: '0904123456', location: 'Nam Định', active: 0 },
+                    { name: 'Trần Thanh Phương', email: 'phuongtt@allaravel.com', phone: '0904123456', location: 'Hà Nội', active: 0 },
+                    { name: 'Trần Văn Tùng', email: 'tungtv@allaravel.com', phone: '0904123456', location: 'HCM', active: 1 }
+                ]
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Thiết lập thuộc tính class với v-bind Vuejs - Allaravel.com</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container" id="app">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="alert" :class="{'alert-success':isSuccess,'alert-warning':!isSuccess}" :style="{fontSize:fontSize + 'px'}">
+                    <strong>Cảnh báo!</strong> Vue.js là framework gây nghiện, bạn cần chú ý khi sử dụng :))
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <button type="button" v-on:click="myClickHandler" class="btn btn-primary">Nhấn thử</button>
+            <button type="button" class="btn btn-danger" v-on:click="likes++">
+                <i class="far fa-thumbs-up">
+                    <span>{{ likes }}</span>
+            </button>
+
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-6">
+                <a href="https://allaravel.com/tutorials/vuejs-framework/gioi-thieu-framework-vue-js/" @click.prevent="courseClick">Link đầu tiên</a>
+                <div v-if="show">
+                    <div class="list-group">
+                        <a :href="tuto.url" v-for="tuto in tutorials">{{ tuto.title }}</a>
+                    </div>
+                </div>
+            </div>
+            <input value="space" type="button" v-on:keyup.space.prevent="courseClick">
+            <div class="col-md-6">
+                <a href="https://allaravel.com/tutorials/vuejs-framework/gioi-thieu-framework-vue-js/">Link thứ hai</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                    <div class="col-md-12"><h3> {{test1 }} </h3></div>
+                    <div><input type="text" v-model="test1"></div>
+            </div>
+        </div>
+        <div class="row">
+            <h3></h3>
+            <input type="text" class="form-control" v-bind:value="test1" v-on:keyup="message= ">
+        </div>
+        
+    </div>
+
+
+
+
+
+
+
+
+
+    <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+    <script type="text/javascript">
+        new Vue({
+            el: '#app',
+            data: {
+                test1: 'Ví dụ cơ bản test',
+                isSuccess: true,
+                fontSize: 14,
+                likes: 10,
+                show: false,
+                tutorials: [
+                    { title: '1.1 Giới thiệu framework Vue.js', url: 'https://allaravel.com/tutorials/vuejs-framework/gioi-thieu-framework-vue-js/' },
+                    { title: '1.2 Cài đặt môi trường Vue.js', url: 'https://allaravel.com/tutorials/vuejs-framework/cai-dat-moi-truong-vue-js/' },
+                    { title: '1.3 Công cụ sử dụng trong phát triển Vue.js', url: 'https://allaravel.com/tutorials/vuejs-framework/cong-cu-su-dung-trong-phat-trien-vue-js/' },
+                    { title: '2.1 Cú pháp câu lệnh', url: 'https://allaravel.com/tutorials/vuejs-framework/mau-cu-phap-cau-lenh-trong-vue-js/' },
+                    { title: '2.2 Cú pháp điều kiện v-if, v-show', url: 'https://allaravel.com/tutorials/vuejs-framework/cau-lenh-dieu-kien-v-if-va-v-show/' },
+                ]
+            },
+            methods: {
+                myClickHandler: function () {
+                    this.isSuccess = !this.isSuccess;
+                    this.fontSize += 1;
+                },
+                courseClick: function () {
+                    this.show = !this.show;
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

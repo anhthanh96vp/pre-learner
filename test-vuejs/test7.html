@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<style>
+    input {
+        width: 80px;
+        height: 80px;
+    }
+</style>
+
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+</head>
+
+<body>
+    <div id="app" class="container">
+        <div class="row">
+
+            <div class="col-md-6">
+                <input type="checkbox" v-model="primary">
+                <input type="checkbox" v-model="success">
+                <input type="checkbox" v-model="danger">
+            </div>
+            <div class="col-md-6">
+                <h5 v-bind:class="{'text-primary': primary,'bg-success': success,'text-danger': danger}">
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequatur tenetur iste suscipit ducimus beatae minus. Soluta
+                    neque officia molestias repellendus a repellat culpa quos magni sequi deserunt? Iste, quas perferendis?
+                </h5>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <h5 v-bind:class="[textColor, textCenter, (textCenter == 'text-center') ? 'border-left' : (textCenter == 'text-right') ? 'border-right' : 'border-left border-right']">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore, voluptatem maxime consequuntur numquam soluta blanditiis
+                        dolorem est, laudantium vitae odit labore repellendus eum voluptatibus nulla commodi, necessitatibus
+                        id! Natus, voluptates.
+                    </h5>
+                </div>
+                <div class="col-md-6">
+                    <input type="radio" value="text-danger" v-model="textColor">
+                    <input type="radio" value="text-warning" v-model="textColor">
+                    <input type="radio" value="text-info" v-model="textColor">
+                    <input type="radio" value="text-center" v-model="textCenter">
+                    <input type="radio" value="text-right" v-model="textCenter">
+                    <input type="radio" value="text-left" v-model="textCenter">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div v-bind:style="{ color: colorTest, fontSize: fontSizeTest + 'px' }">
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore, voluptatem maxime consequuntur numquam soluta blanditiis
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div v-bind:style="styleObject">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore, voluptatem maxime consequuntur numquam soluta blanditiis
+            </div>
+            <div v-bind:style="[styleObject, styleObject2]">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore, voluptatem maxime consequuntur numquam soluta blanditiis
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+    <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                primary: true,
+                success: false,
+                danger: false,
+                textColor: 'text-warning',
+                textCenter: 'text-center',
+                colorTest: 'green',
+                fontSizeTest: 20
+                ,
+                styleObject: {
+                    color: 'red',
+                    fontSize: '20px'
+                },
+                styleObject2: {
+                    background: 'black',
+                    height: '50px',
+                    width: '100%'
+                }
+
+            }
+        })
+
+    </script>
+</body>
+
+</html>

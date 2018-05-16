@@ -20,8 +20,8 @@
                 <div>
                     <h3 style="color: red"> {{ok.name}} </h3>
                 </div>
-                <div v-for=" ok2 in ok.posts">
-                    {{ok2.title}} 
+                <div v-for=" (ok2, index) in ok.posts">
+                {{index+1}}. {{ok2.title}} 
                 </div>
             </div>
         </div>
