@@ -1,0 +1,43 @@
+
+<html lang="en">
+    <head>
+      <meta charset="utf-8">
+      <title>event.pageX demo</title>
+      <style>
+      body {
+        background-color: #eef;
+      }
+        .container{
+         width: 1000px;
+          height: 1000px;
+          background: white;
+          margin: 0 auto;
+        } 
+      #test {
+        position: absolute;
+        width: 100px;
+        height: 30px;
+        background: grey;
+        top: 50%;
+        right: 50%
+      }
+      </style>
+      <div class="container">
+       
+      </div>
+      <div id="test">dskladjklsa</div>
+      <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    </head>
+    <body>
+     
+    <div id="log"></div>
+     
+    <script>
+    $('.container').on( "mousemove", function( event ) {
+      $( "#log" ).text( "pageX: " + event.clientX + ", pageY: " + event.pageY );
+      $("#test").css('left', event.clientX+"px")
+    });
+    </script>
+     
+    </body>
+    </html>

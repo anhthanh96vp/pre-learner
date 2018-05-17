@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+
+<style>
+    .container {
+        padding-top: 200px;
+    }
+    .row {
+        margin-bottom: 30px;
+    }
+    .style {
+        margin: 5px;
+        display: block;
+        width: 130px;
+        height: 60px;
+    }
+
+</style>
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+</head>
+
+<body>
+
+    <div id="app1" class="container">
+        <div class="row">
+            <input :value="hienthi" class="form-control" id="result" type="text">
+        </div>
+        <div>
+            <button v-for="item in items" v-bind:value="item" class="btn btn-danger style" v-on:click="xuly(this.value)">{{item}}</button>
+            <button class="btn btn-danger style">=</button>
+            <button class="btn btn-danger style">C</button>
+            <button class="btn btn-danger style"><--</button>
+        </div>
+
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+    <script>
+        var vue = new Vue({
+            el: '#app1',
+            data: {
+                items: [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, '.', '+', '-', '*', '/', '%'],
+                hienthi: '',
+                
+            },
+            methods: {
+                xuly: (numzz) => {
+                    this.hienthi = numzz;
+                    console.log(numzz);
+                    console.log(this.vue.hienthi);
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

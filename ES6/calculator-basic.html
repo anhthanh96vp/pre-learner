@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Title</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+    crossorigin="anonymous">
+</head>
+
+<body>
+  <div class="container text-center">
+    <div class="row">
+      <div class="col-md-12">
+        <input type="text" id="result">
+      </div>
+      <div class="col-md-12">
+        <button class="btn btn-danger" value="7" onclick="xuly(this.value)">7</button>
+        <button class="btn btn-danger" value="8" onclick="xuly(this.value)">8</button>
+        <button class="btn btn-danger" value="9" onclick="xuly(this.value)">9</button>
+        <button class="btn btn-primary" value="+" onclick="xuly(this.value)">+</button>
+        <button class="btn btn-primary" value="-" onclick="xuly(this.value)">-</button>
+      </div>
+      <div class="col-md-12">
+        <button class="btn btn-danger" value="4" onclick="xuly(this.value)">4</button>
+        <button class="btn btn-danger" value="5" onclick="xuly(this.value)">5</button>
+        <button class="btn btn-danger" value="6" onclick="xuly(this.value)">6</button>
+        <button class="btn btn-primary" value="*" onclick="xuly(this.value)">x</button>
+        <button class="btn btn-primary" value="/" onclick="xuly(this.value)">/</button>
+        <button class="btn btn-primary" value="%" onclick="xuly(this.value)">%</button>
+
+      </div>
+      <div class="col-md-12">
+        <button class="btn btn-danger" value="7" onclick="xuly(this.value)">1</button>
+        <button class="btn btn-danger" value="7" onclick="xuly(this.value)">2</button>
+        <button class="btn btn-danger" value="7" onclick="xuly(this.value)">3</button>
+        <button class="btn btn-success" onclick="tinhtoan()">=</button>
+        <button class="btn btn-success" onclick="deleteC()"><-</button>
+
+      </div>
+    </div>
+  </div>
+  </div>
+
+
+  <script>
+    var x = '';
+    const load = () => { $('#result').val(x);    
+    }
+    const xuly = (num) => {
+      x += num;
+      load();
+    }
+    const tinhtoan = () => {
+      let a = eval($('#result').val());
+      $('#result').val(a);
+      x = a;
+      x = '';
+    }
+    const xoa = () => {  $('#result').val('');}
+
+
+
+  </script>
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
