@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style>
+h1{
+	color: red;
+}
+</style>
+<body>
+	<div id="app1">
+		<h3>{{message}}</h3>
+		<span>v-on va v-bind</span>
+		<input type="text" v-bind:value="message" v-on:keyup="message = $event.target.value"><br>
+		<span>v-model</span>
+		<input type="text" v-model="message"><br>
+		<span>v-model.lazy</span>
+		<input type="text" v-model.lazy="message"><br>
+		<span>textarea</span>
+		<textarea  type="text" v-model="message"></textarea><br>
+		<span>checkbox</span>
+		<input type="checkbox" v-model="checkbox"><span>{{checkbox}}</span>
+		<h2> lap trinh wep can ban {{checkName}} </h2>
+		<h1>check radio</h1>
+		<input type="checkbox" value="CSS" v-model="checkName">
+		<input type="checkbox" value="HTML" v-model="checkName">
+		<input type="checkbox" value="JAVASCRIPT" v-model="checkName"><br>
+		<div>
+			<h1>check radio</h1>
+			<input type="radio" value="Phang" v-model="checkZ">
+			<input type="radio" value="Ko Phang" v-model="checkZ">
+			<h3>{{checkZ}}</h3>
+		</div>
+		<h1>Select</h1>
+		<h5>{{ selects }}</h5>
+		<select v-model="selects">
+			<option value="javscript">javscript</option>
+			<option value="css">css</option>
+			<option value="html">html</option>
+		</select>
+
+		<h1>All Select</h1>
+		<h5>ban chon {{ selectd }}</h5>
+		<select v-model="selectd" multiple>
+			<option value="javscript">javscript</option>
+			<option value="css">css</option>
+			<option value="html">html</option>
+		</select>
+		<h1>For option select</h1>
+		<select>
+			<option v-for="sel in selectAll" v-bind:value="sel.value">{{ sel.text }}</option>
+		</select>
+
+
+
+
+	</div>
+
+
+	<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+	<script>
+		var vm = new Vue({
+			el: '#app1',
+			data: {
+				message: '1 bai test',
+				checkbox: true,
+				checkName:  [],
+				checkZ: '',
+				selects: '',
+				selectd: [],
+				selectAll: 
+				[
+					{text: 'One', value: 1},
+					{text: 'Two', value: 2},
+					{text: 'Three', value: 3}
+				]
+			}
+		})
+	</script>
+	<!--  https://anonyviet.com/huong-dan-lam-game-javascript-don-gian-bang-thu-vien-phaser/ 
+		https://www.youtube.com/watch?v=14Vx2lxuWlI -->
+</body>
+</html>

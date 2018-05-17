@@ -1,7 +1,17 @@
 <!doctype html>
 <html lang="en">
 
-<style>
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+    crossorigin="anonymous">
+
+    <style>
     .container {
         padding-top: 200px;
     }
@@ -14,17 +24,11 @@
         width: 130px;
         height: 60px;
     }
+    .btn:not(:disabled):not(.disabled) {
+        display: inline;
+    }
 
 </style>
-<head>
-    <title>Title</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-        crossorigin="anonymous">
 </head>
 
 <body>
@@ -34,34 +38,54 @@
             <input :value="hienthi" class="form-control" id="result" type="text">
         </div>
         <div>
-            <button v-for="item in items" v-bind:value="item" class="btn btn-danger style" v-on:click="xuly(this.value)">{{item}}</button>
-            <button class="btn btn-danger style">=</button>
-            <button class="btn btn-danger style">C</button>
-            <button class="btn btn-danger style"><--</button>
+            <button v-for="item in items" v-bind:value="item" class="btn btn-danger style" v-on:click="xuly(item)">{{item}}</button>
+            <button class="btn btn-danger style" v-on:click="binhphuong">x<sup style="font-size: 10px;">2</button>
+                <button class="btn btn-danger style" v-on:click="giaithua">!n</button>
+                <button class="btn btn-danger style" v-on:click="tinhtong">=</button>
+                <button class="btn btn-danger style" v-on:click="del">R/s</button>
+                <button class="btn btn-danger style" v-on:click="del2"><--</button>
+            </div>
+
         </div>
 
-    </div>
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+        <script>
+            var vue = new Vue({
+                el: '#app1',
+                data: {
+                    items: [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, '.', '+', '-', '*', '/', '%'],
+                    hienthi: '',
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
-    <script>
-        var vue = new Vue({
-            el: '#app1',
-            data: {
-                items: [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, '.', '+', '-', '*', '/', '%'],
-                hienthi: '',
-                
-            },
-            methods: {
-                xuly: (numzz) => {
-                    this.hienthi = numzz;
-                    console.log(numzz);
-                    console.log(this.vue.hienthi);
-                }
-            }
-        })
-    </script>
-</body>
+                },
+                methods: {
+                   
+                    xuly: (number) => {
+                        this.vue.hienthi += number;
+                    },
+                    tinhtong: () => {
+                        this.vue.hienthi = eval(this.vue.hienthi);
+                    },
+                    del: () => {
+                        this.vue.hienthi = ' ';
+                    },
+                     del2: () => {
+                        this.vue.hienthi = this.vue.hienthi.slice(0, -1);
+                    },
+                    binhphuong: () => {
+                        this.vue.hienthi = this.vue.hienthi*this.vue.hienthi;
+                    },
+                    giaithua: () => {
+                        var n = 1;
+                        for( let i=1; i<= this.vue.hienthi; i++){ n *= i;
+                        }
+                            this.vue.hienthi = n; 
+                        }
 
-</html>
+                    }
+                })
+            </script>
+        </body>
+
+        </html>
