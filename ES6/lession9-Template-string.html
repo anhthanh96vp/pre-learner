@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Template String</title>
+</head>
+<body>
+
+    <script>
+    
+    // Template String sẽ thay thế cách nối chuỗi thông thường. Bọc bởi 2 dấu ``
+    let temp = `test thử xem sao`;
+    console.log(temp);
+
+    //Thêm 1 biến vào tempalte string
+    let x = 5;
+    let template = `Đây là biến x: ${x}`;
+    console.log(template);
+
+
+        //Dùng map lặp qua mảng
+    let domains = ['facebook', 'google', 'yahoo'];
+    domains.map(function(domain){
+        console.log(`<h1>${domain}</h1>`)
+    })
+
+        //map lặp qua object
+
+    var mons = [
+        {
+            app: 'message',
+            web: 'bootstrap'
+        },
+        {
+            app: 'zalo',
+            web: 'w3school'
+        }
+    ];
+   
+    mons.map(function(domain){
+       var tml = 
+       `<div>
+        <h1>${domain.app}</h1>
+        <h1>${domain.web}</h1>
+       </div> `;
+    });
+
+    console.log(tml);
+       
+        
+    
+
+
+
+    </script>
+            
+
+
+    
+</body>
+</html>

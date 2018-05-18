@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Rest Parameters</title>
+</head>
+<body>
+    
+
+
+    <script>
+        //Viết function kiểu Tham  số còn lại, tham số không xác định
+        const test = (domain, expz, ...zlz) => {
+            console.log(domain);
+            console.log(expz);
+            console.log(zlz);
+        }
+        test('cc', 'xl', 'zz', 'bb', 'xx');
+    
+    </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Symbol</title>
+</head>
+
+<body>
+
+
+
+    <script>
+
+        // Symbol được sinh ra dùng để xử lý cho bài toán mang tính duy nhất (unique), 
+        // mỗi khi bạn tạo một đối tượng Symboy thì đối tượng đó sẽ không bao giờ trùng 
+        // lặp với một đối tượng khác
+
+        //Nếu bạn tạo hai symbols và so sánh chúng với nhau thì sẽ thấy chúng KHÔNG BAO GIỜ bằng nhau cả.
+        let symbol1 = Symbol('symbol3');
+        let symbol2 = Symbol('symbol3');
+        console.log(symbol1 === symbol2); //False
+        //kiểm tra xem có phải là symbol hay không
+        console.log(typeof symbol1);
+
+        const MY_KEY = Symbol();
+        let obj = {
+            [MY_KEY]: 123
+        };
+        console.log(obj[MY_KEY]);
+    </script>
+</body>
+
+</html>

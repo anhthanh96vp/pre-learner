@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maps</title>
+</head>
+
+<body>
+
+
+
+    <script>
+        // Map là một kiểu dữ liệu tương tự như Set,
+        // tuy nhiên với Map thì có cấu trúc dạng key => value còn với Set thì chỉ có value.
+
+
+        // Khởi tạo: let map = new Map()
+        // Thêm phần tử: map.set('Name', 'Nguyen Van Cuong');
+        // Xóa phần tử: map.delete("Name");
+        // Kiểm tra phần tử tồn tại: map.has('Name')
+        // Đếm tổng số phần tử: map.size
+        // Xóa toàn bộ phần tử: map.clear();
+
+
+
+        //Lúc khởi tạo sẽ có một tham số truyền vào và giá trị của tham số này là một mảng 
+        // chứa nhiều mảng con,mỗi mảng con sẽ có hai phần tử đại diện cho key và value.
+        let map = new Map([
+            ['Name', 'Nguyễn Văn Cường'],
+            ['Email', 'Nguyễn Văn Tuấn'],
+            ['Messenger', 'Nguyễn Văn Mạnh'],
+        ])
+
+        //Xóa phần tử
+        map.delete("Name");
+        console.log(map);
+
+        //Thêm phần tử
+        map.set("Age", "Male");
+        console.log(map);
+
+        //Kiểm tra phần tử
+        console.log(map.has("Age"));
+
+        //Kiểm tra độ dài Maps
+        console.log(map.size);
+
+        //Xóa toàn bộ phần tử
+        map.clear();
+        console.log(map);
+
+
+
+        //----------------------------------
+
+        //2.Key bạn có thể là một string, number, const hay thậm chí là một NaN.
+        let cc = new Map();
+        // KEY1 là const
+        const KEY1 = {};
+        cc.set(KEY1, 'Nguyễn Văn Cường');
+        console.log(cc.get(KEY1)); // Nguyễn Văn Cường
+
+        //KEY2 là NaN
+
+        cc.set(NaN, 'freetuts.net');
+        console.log(cc.get(NaN)); // freetuts.net
+
+
+        //---------------------------------
+
+        //3.Các hàm hỗ trợ map
+
+        let dd = new Map([
+            ['Name', 'Nguyễn Văn Cường'],
+            ['Email', 'Nguyễn Văn Tuấn'],
+            ['Messenger', 'Nguyễn Văn Mạnh'],
+        ]);
+
+        //Lấy danh sách key hàm keys()
+        for (key of dd.keys()) {
+            console.log(key);
+        }
+
+
+
+        //Hàm values() - lấy danh sách values
+        for (value of dd.values()) {
+            console.log(value);
+        }
+
+
+
+        //Lấy cả key cả values entries()
+        for (entri of dd.entries()) {
+            console.log(entri);
+        }
+
+        //--------------------------
+
+        // Lặp qua các phần tử trong Map
+
+        //for
+        for (var [key, value] of dd) {
+            console.log(key + ' - ' + value);
+        }
+
+        //forEach
+        dd.forEach((value, key) => {
+            console.log(key + ' - ' + value);
+        });
+
+        // 5. Mapping và Filtering
+        
+        let zz = new Map()
+            .set(1, 'a')
+            .set(2, 'b')
+            .set(3, 'c')
+            .set(4, 'd')
+           console.log(zz);
+
+        // Chuyển đổi ham map()
+        let map1 = new Map(
+            [...zz].map(
+                ([key, value]) => [key, key + '-' + value]
+            )
+        );
+
+        console.log(map1);
+        
+
+
+        //Sử dụng hàm filter()
+        let map2 = new Map(
+            [...zz].filter(
+                ([key, value]) => key%2 == 0
+            )
+        )
+        console.log(map2);
+
+    </script>
+</body>
+
+</html>

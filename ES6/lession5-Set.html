@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Set</title>
+</head>
+
+<body>
+    <script>
+        // Khởi tạo: let set = new Set();
+        // Thêm phần tử: set.add(value);
+        // Xóa phần tử: set.delete(value);
+        // Kiểm tra tồn tại giá trị: set.has(value);
+        // Đếm tổng số phần tử: set.size;
+        // Xóa toàn bộ phần tử: set.clear();
+
+        // -------------------------------------------------------------------------------------
+        //Khởi tạo set phải là 1 mảng
+        let set = new Set([1, 2, 3, 4]);
+        console.log(set);
+
+        //Thêm phần tử vào mảng
+        set.add(5);
+        console.log(set);
+
+        //Xóa phần tử khỏi mảng
+        set.delete(1);
+        console.log(set);
+
+        //Kiểm tra giá trị tồn tài
+        set.has(2);
+        console.log(set.has(2));
+
+        //Kiểm tra tổng số phần tử
+        console.log(set.size)
+
+
+         //Xóa toàn bộ phần tử
+        set.clear();
+        console.log(set);
+
+
+        //Sử dụng vòng lặp với set
+        var number = new Set([5, 6, 7, 8]);
+        for (let num of number) {
+            console.log(num);
+        }
+
+
+    //    <!-- Chuyển set sang Array -->
+        var arr_number = [...number];
+        console.log(arr_number);
+
+
+    //    <!-- Chuyển array sang set -->
+
+        var set_number = new Set(arr_number);
+        console.log(set_number);
+
+
+
+
+
+    </script>
+</body>
+
+</html>
