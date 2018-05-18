@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <script>
+        //Mảng 
+
+        let date = [10, 20, 30];
+        let [d, m, c] = date;
+        //có thể viết let [ , ,c] =date
+        // để lấy mỗi phần tử c
+        console.log(d, m, c);
+
+        //Object
+        let date2 = {
+            day: 10,
+            month: 20,
+            year: 30
+        }
+        let {day: y, month: h, year: r} = date2;
+        //có thể viết let {day: y} để lấy mỗi phần tử day
+        console.log(y, h, r);
+
+        var person = {name : "Cường", email : "thehalfheart@gmail.com"};
+        var {name: name2, email: email2} = person;
+        console.log(name2, email2)
+
+
+    </script>
+</body>
+</html>

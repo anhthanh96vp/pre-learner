@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Default Parameters</title>
+</head>
+<body>
+    
+    
+
+
+    <script>
+        //TAOJ BIẾN MẶC ĐỊNH KIỂU ES5
+
+        var domain;
+        const defaulfun = domain => {
+            domain = domain || 'facebook.com';
+            return domain;
+        }
+        console.log('Chưa truyền tham số ' + defaulfun());
+        console.log('Đã truyền tham số ' + defaulfun('freetus.vn'));
+
+
+        // BIẾN MẶC ĐỊNH KIỂU ES6
+
+        const defau = (domain2 = 'facebook.com') => {
+            return domain2;
+        }
+        console.log('Chưa truyền tham số ' + defau());
+        console.log('Đã truyền tham số ' + defau('freetus.vn'));
+
+
+        //Test
+        const defau3 = domain3 => {
+            domain3 = 'google.com';
+            return domain3;
+        }
+        console.log('Chưa truyền tham số ' + defau3());
+        console.log('Đã truyền tham số ' + defau3('frevn'));
+        //GIÁ TRỊ DOMAIN3 KHÔNG THAY ĐỔI
+
+    </script>
+</body>
+</html>
