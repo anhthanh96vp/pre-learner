@@ -8,10 +8,12 @@
 </head>
 
 <body>
+    <div id="app"></div>
 
-
-
+    <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
     <script>
+
+
         // Cú pháp get kết nối thuộc tính đối tượng với một hàm mà 
         // hàm này sẽ được gọi khi chúng ta lấy giá trị thuộc tính.
 
@@ -36,6 +38,54 @@
         }
         language.current = 'EN';
         console.log(language.log); // ['EN']
+
+
+
+
+
+
+        //Chúng ta có thể định nghĩa các phương thức get và set cho một đối tượng thông qua phương thức Object.defineProperty():
+
+
+        var myObj = {
+            a: 0
+        };
+        Object.defineProperty(myObj, 'b', {
+            get: function () {
+                return this.a + 1;
+            }
+        });
+        console.log(myObj.b) // Gọi đến get và trả về a + 1, ở đây kết quả là 0 + 1 = 1
+        Object.defineProperty(myObj, 'c', {
+            set: function (x) {
+                this.a = x / 2;
+            }
+        });
+        myObj.c = 10;
+        console.log(myObj.a) // Kết quả là 5
+
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                myObject: {
+                    message: 'Xin chào, tôi là Vue.js!'
+                }
+            }
+        })
+
+        //Để thêm được các thuộc tính chúng ta phải sử dụng phương thức Vue.set
+        // hoặc với các mảng dữ liệu chúng ta có thể sử dụng phương thức splice().
+        Vue.set(vm.myObject, 'from', 'All Laravel')
+        console.log(vm.myObject);
+
+
+
+        //Đôi khi ban cũng muốn gán một số thuộc tính vào một đối tượng tồn tại, ví dụ sử dụng Object.assign()
+        //hoặc _.extend(). Tuy nhiên các thuộc tính được thêm vào đối tượng sẽ không được kích hoạt thay đổi.
+        //Trong trường hợp này, cần tạo một đối tượng mới với các thuộc tính từ cả đối tượng gốc và thuộc tính muốn thêm vào.
+        
+        vm.myObject = Object.assign({}, vm.myObject, { a: 1, b: 2 })
+
     </script>
 </body>
 

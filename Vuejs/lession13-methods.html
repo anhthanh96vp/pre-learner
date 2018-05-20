@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Methods</title>
+</head>
+<body>
+
+    <div id="app">
+    <p>Nhập tên ô firstname có chữ Văn sẽ là ông, chữ Thị sẽ là bà</p>
+    <h2>{{ fullname() }}</h2>
+    <input type="text" v-model="firstName" placeholder="firstname">
+    <input type="text" v-model="lastName" placeholder="lastname">
+    </div>
+
+
+
+
+
+    <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+    <script>
+        vm = new Vue({
+            el: '#app',
+            data: {
+                firstName: '',
+                lastName: ''
+            },
+            methods: {
+                fullname: function(){
+                    if(this.firstName.toUpperCase().indexOf('VĂN') != -1){title = 'ÔNG';}
+                    else if(this.firstName.toUpperCase().indexOf('THỊ') != -1){title = 'BÀ'}
+                    else{title = 'ÔNG/BÀ'}
+                    return title + ' ' + this.firstName.toUpperCase() + ' ' + this.lastName.toUpperCase();
+
+                }
+            }
+        })
+        //arrow function không thể tham chiếu đến các đối tượng ở ngoài nếu không truyền nó qua tham số do 
+        //arrow function bị ràng buộc với ngữ cảnh gốc và từ khóa this không tham chiếu đến Vue instance.
+        //Chính vì thế các thuộc tính của data và các phương thức của Vue không thể tham chiếu đến trong 
+        //khai báo bằng arrow function. Một giải pháp đưa ra là sử dụng function expression ES5.
+
+        //Với các phương thức không cần truy xuất đến các thuộc tính của data hoặc các phương thức khác 
+        //trong methods thì chúng ta hoàn toàn có thể sử dụng arrow function:
+
+    </script>
+</body>
+</html>

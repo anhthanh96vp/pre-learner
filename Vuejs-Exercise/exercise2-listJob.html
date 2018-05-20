@@ -15,7 +15,15 @@
 
         }
 
-        h3 {
+        input {
+            margin-bottom: 20px;
+        }
+
+        select {
+            margin-top: 20px;
+        }
+
+        h5 {
             display: inline-block;
             transform: rotate(5deg);
         }
@@ -27,6 +35,10 @@
         select {
             transform: rotate(-7deg);
 
+        }
+
+        .main {
+            margin-top: 30px;
         }
     </style>
 
@@ -42,8 +54,8 @@
             <div class="col-md-12">
                 <h4 class="p-3 mb-2 bg-info text-white">Thêm công việc vào danh sách</h4>
                 <div class="text-right">
-                    <h3 v-if="" class="text-success">Tạo mới thành công</h3>
-                    <h3 v-else class="text-danger">Vui lòng điền đầy đủ</h3>
+                    <h5 v-if="test == true" class="text-success">Tạo mới thành công</h5>
+                    <h5 v-else class="text-danger">Vui lòng điền đầy đủ</h5>
                 </div>
             </div>
             <div class="col-md-12">
@@ -75,10 +87,12 @@
             <div class="col-md-12 text-right">
                 <button type="submit" class="btn btn-danger" v-on:click="addJob">Thêm</button>
             </div>
-            <div class="container">
+            <label for="seach">Seach tên công việc</label>
+            <input id="seach" type="text" class="form-control" v-model="keyword" v-on:keyup.enter="seachJob" placeholder="Seach">
+            <div class="container main">
                 <table class="table">
                     <table id="myTable" class=" table table-hover container">
-                        <thead>
+                        <thead class="text-center">
                             <th>#</th>
                             <th>Tiêu đề</th>
                             <th>Trạng thái</th>
@@ -87,42 +101,42 @@
                             <th>Action</th>
                         </thead>
                         <tbody>
-                            <tr v-for="(job, index) in jobAll">
+                            <tr class="text-center" v-for="(job, index) in jobAll">
                                 <td>{{ index +1 }}</td>
                                 <td>{{job.title}}</td>
                                 <td>{{job.status}}</td>
                                 <td>{{job.priority}}</td>
                                 <td>{{job.description}}</td>
                                 <td>
-                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">Chỉnh sửa</button>
+                                    <button type="button" class="btn btn-success" data-toggle="modal" v-on:click="sttJob(index)" data-target="#exampleModal">Chỉnh sửa</button>
                                     <!-- Modal -->
                                     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Chỉnh sửa công việc</h5>
+                                                <div class="modal-header bg-success">
+                                                    <h5 class="modal-title text-light" id="exampleModalLabel">Chỉnh sửa công việc</h5>
 
                                                 </div>
                                                 <div class="modal-body row">
                                                     <div class="col-md-12">
                                                         <div class="row">
                                                             <label class="col-md-2" for="title2">Tiêu đề</label>
-                                                            <input id="title2" class="col-md-9" v-model="editTitle" type="text">
+                                                            <input id="title2" class="col-md-9 form-control" v-model="editTitle" type="text">
                                                         </div>
                                                     </div>
                                                     <div class="col-md-12">
                                                         <div class="row">
-                                                            <label class="col-md-2" for="description2">Mô tả công việc</label>
-                                                            <textarea id="description2" rows="6" class="col-md-9" v-model="editDescription" type="text"></textarea>
+                                                            <label class="col-md-2" for="description2">Mô tả</label>
+                                                            <textarea id="description2" rows="6" class="col-md-9 form-control" v-model="editPriority" type="text"></textarea>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-12">
                                                         <div class="row">
-                                                            <select v-model="editPriority" class="col-md-3  offset-md-4" type="text">
+                                                            <select v-model="editDescription" class="col-md-3  offset-md-4 custom-select" type="text">
                                                                 <option value="" disabled>Ưu tiên</option>
                                                                 <option v-for="pri in priorityAll">{{pri}}</option>
                                                             </select>
-                                                            <select v-model="editStatus" class="col-md-3 offset-md-1" type="text">
+                                                            <select v-model="editStatus" class="col-md-3 offset-md-1 custom-select" type="text">
                                                                 <option value="" disabled>Trạng thái</option>
                                                                 <option v-for="sta in statusAll">{{sta}}</option>
                                                             </select>
@@ -131,12 +145,12 @@
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy bỏ</button>
-                                                    <button type="button" class="btn btn-info" v-on:click="editJob(this.value)">Lưu lại</button>
+                                                    <button type="button" class="btn btn-info" v-on:click="editJob">Lưu lại</button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <button type="button" class="btn btn-info" v-on:click="deleteJob(index)">Xóa</button>
+                                    <button type="button" class="btn btn-info" v-on:click.lazy="deleteJob(index)">Xóa</button>
 
                                 </td>
                             </tr>
@@ -171,6 +185,9 @@
                 editStatus: '',
                 editPriority: '',
                 editDescription: '',
+                sttNumber: '',
+                keyword: '',
+                test: false,
                 jobAll: [
                     { title: 'HTML', status: 'Hoàn thành', description: 'Đã ra phiên bản HTML5', priority: 'D' },
                     { title: 'CSS', status: 'Hoàn thành', description: 'Đã ra phiên bản CSS3', priority: 'C' },
@@ -193,24 +210,63 @@
                     objectJob.priority = this.priority;
                     objectJob.description = this.description;
                     if (objectJob.title == '' || objectJob.status == '' || objectJob.priority == '' || objectJob.description == '') {
-                        console.log('error');
+                        return this.test = false;
                     } else {
-                       this.jobAll.push(objectJob);
-
+                        this.jobAll.push(objectJob);
+                        return this.test = true;
                     }
                 },
                 deleteJob: function (stt) {
                     this.jobAll.splice(stt, 1);
                 },
-                editJob: function (stt) {
-                    console.log(stt);
-                    this.jobAll[3].title = this.editTitle;
-                    this.jobAll[3].status = this.editStatus;
-                    this.jobAll[3].description = this.editPriority;
-                    this.jobAll[3].priority = this.editDescription;
-                }
+                sttJob: function (stt) {
+                    this.sttNumber = stt;
+                },
+                editJob: function () {
+                    if (this.editTitle != '') {
+                        this.jobAll[this.sttNumber].title = this.editTitle;
+                        this.editTitle = '';
+                    }
+                    if (this.editStatus != '') {
+                        this.jobAll[this.sttNumber].status = this.editStatus;
+                        this.editStatus = '';
+                    }
+                    if (this.editPriority != '') {
+                        this.jobAll[this.sttNumber].description = this.editPriority;
+                        this.editPriority = '';
+                    }
+                    if (this.editDescription != '') {
+                        this.jobAll[this.sttNumber].priority = this.editDescription;
+                        this.editDescription = '';
+                    }
+                    $('#exampleModal').modal('hide');
+
+                },
+                //seachJob: function () {
+                //    console.log(this.keyword);
+                //    var postArr = this.jobAll,
+                //        keyword = this.keyword;
+                //    if (!keyword) {
+                //       return postArr;
+                //  }
+                //   keyword = keyword.trim().toLowerCase();
+                //   postArr = postArr.filter(function (item) {
+                //       if (item.title.toLowerCase().indexOf(keyword) !== -1) {
+                //            return item;
+                //       }
+                //   })
+                //  return postArr;
+                //}
             }
         })
+        var seachJob = function () {
+            //console.log(this.keyword);
+            // console.log(this.jobAll.filter(function(itemz){return itemz.title.match(this.keyword)}))
+            //this.jobAll = this.jobAll.filter(function(itemz){return itemz.title.match(this.keyword)});
+            //Chua nghi ra cach goi ben trong
+            vm.jobAll = vm.jobAll.filter(function (item) { return item.title.match(vm.keyword) });
+
+        }
     </script>
 
 </body>
