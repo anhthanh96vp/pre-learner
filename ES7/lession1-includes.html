@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        // Hàm includes dùng để kiểm tra một phần tử có trong một mảng hay không.
+        // Kết quả của hàm includes trả về là true nếu có phần tử trong mảng,
+        // còn không có tất nhiên là trả về false.
+
+        // Trước đây, để kiểm tra một phần tử có trong mảng hay không, ta dùng hàm indexOf().
+        // Kết quả của hàm indexOf trả về là thứ tự của phần tử trong mảng, nếu không có thì trả về -1.
+
+        //Cách kiểm tra phần tử trong mảng bằng ES5
+        let array = ['a', 'b', 'c', 'd'];
+        var f = array.indexOf('a');
+        console.log(f);
+        if (f >= 0) {
+            console.log('true');
+        } else { console.log('false') }
+
+        //Cách kiểm tra phần tử trong mảng bằng ES7
+
+        var g = array.includes('z');
+        if (g == true) {
+            console.log('true');
+        } else {
+            console.log('false');
+        }
+
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Object rest and object spread</title>
+</head>
+
+<body>
+
+    <script>
+        //Khai báo kiểu ES 6 tham số còn lại Object rest
+        const myObject = {
+            lorem: 'ipsum',
+            dolor: 'sit',
+            amet: 'foo',
+            bar: 'baz'
+        };
+
+        const { lorem, dolor, ...others } = myObject;
+
+
+        //Khai báo kiểu ES7 Object spread
+
+        const obj1 = {
+            amet: 'foo',
+            bar: 'baz'
+        };
+        // đối với code sử dụng ES7
+        const myObject = {
+            lorem: 'ipsum',
+            dolor: 'sit',
+            ...obj1
+        };
+        // đối với code sử dụng ES6
+        const myObject = Object.assign({
+            lorem: 'ipsum',
+            dolor: 'sit'
+        }, obj1);
+        /*
+        myObject === {
+        lorem : 'ipsum',
+        dolor : 'sit',
+        amet : 'foo',
+        bar : 'baz'
+        };
+        */
+
+    </script>
+
+</body>
+
+</html>

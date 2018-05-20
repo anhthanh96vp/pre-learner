@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Example</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <style>
+        h4 {
+            display: inline-block;
+            transform: rotate(7deg);
+
+        }
+
+        h3 {
+            display: inline-block;
+            transform: rotate(5deg);
+        }
+
+        label {
+            display: inline;
+        }
+
+        select {
+            transform: rotate(-7deg);
+
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container" id="app">
+        <div class="text-center p-2 mb-2 bg-danger text-white">
+            <h1>Quản lý công việc</h1>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <h4 class="p-3 mb-2 bg-info text-white">Thêm công việc vào danh sách</h4>
+                <div class="text-right">
+                    <h3 v-if="" class="text-success">Tạo mới thành công</h3>
+                    <h3 v-else class="text-danger">Vui lòng điền đầy đủ</h3>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="row">
+                    <label class="col-md-2 text-success" for="title">Tiêu đề</label>
+                    <input id="title" class="col-md-10 form-control" v-model="title" type="text" placeholder="Tiêu đề" required>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="row">
+                    <label class="col-md-2 text-success" for="description">Mô tả công việc</label>
+                    <textarea id="description" v-model="description" rows="6" class="col-md-10 form-control" type="text" placeholder="Mô tả"
+                        required></textarea>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="row">
+
+                    <select v-model="priority" class="col-md-2  offset-md-7 custom-select" type="text" required>
+                        <option value="" disabled>Độ ưu tiên</option>
+                        <option class="text-success" v-for="pri in priorityAll">{{pri}}</option>
+                    </select>
+                    <select v-model="status" class="col-md-2 offset-md-1 custom-select" type="text" required>
+                        <option value="" disabled>Trạng thái</option>
+                        <option class="text-success" v-for="sta in statusAll">{{sta}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-12 text-right">
+                <button type="submit" class="btn btn-danger" v-on:click="addJob">Thêm</button>
+            </div>
+            <div class="container">
+                <table class="table">
+                    <table id="myTable" class=" table table-hover container">
+                        <thead>
+                            <th>#</th>
+                            <th>Tiêu đề</th>
+                            <th>Trạng thái</th>
+                            <th>Độ ưu tiên</th>
+                            <th>Mô tả</th>
+                            <th>Action</th>
+                        </thead>
+                        <tbody>
+                            <tr v-for="(job, index) in jobAll">
+                                <td>{{ index +1 }}</td>
+                                <td>{{job.title}}</td>
+                                <td>{{job.status}}</td>
+                                <td>{{job.priority}}</td>
+                                <td>{{job.description}}</td>
+                                <td>
+                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">Chỉnh sửa</button>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Chỉnh sửa công việc</h5>
+
+                                                </div>
+                                                <div class="modal-body row">
+                                                    <div class="col-md-12">
+                                                        <div class="row">
+                                                            <label class="col-md-2" for="title2">Tiêu đề</label>
+                                                            <input id="title2" class="col-md-9" v-model="editTitle" type="text">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="row">
+                                                            <label class="col-md-2" for="description2">Mô tả công việc</label>
+                                                            <textarea id="description2" rows="6" class="col-md-9" v-model="editDescription" type="text"></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="row">
+                                                            <select v-model="editPriority" class="col-md-3  offset-md-4" type="text">
+                                                                <option value="" disabled>Ưu tiên</option>
+                                                                <option v-for="pri in priorityAll">{{pri}}</option>
+                                                            </select>
+                                                            <select v-model="editStatus" class="col-md-3 offset-md-1" type="text">
+                                                                <option value="" disabled>Trạng thái</option>
+                                                                <option v-for="sta in statusAll">{{sta}}</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy bỏ</button>
+                                                    <button type="button" class="btn btn-info" v-on:click="editJob(this.value)">Lưu lại</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button type="button" class="btn btn-info" v-on:click="deleteJob(index)">Xóa</button>
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+            </div>
+        </div>
+
+
+    </div>
+
+    </div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                title: '',
+                status: '',
+                priority: '',
+                description: '',
+                editTitle: '',
+                editStatus: '',
+                editPriority: '',
+                editDescription: '',
+                jobAll: [
+                    { title: 'HTML', status: 'Hoàn thành', description: 'Đã ra phiên bản HTML5', priority: 'D' },
+                    { title: 'CSS', status: 'Hoàn thành', description: 'Đã ra phiên bản CSS3', priority: 'C' },
+                    { title: 'Javascript', status: 'Chưa hoàn thành', description: 'Đã ra phiên bản ES8', priority: 'A' },
+                    { title: 'Bootstrap', status: 'Chưa hoàn thành', description: 'Đã ra phiên bản 4.1', priority: 'C' },
+                    { title: 'Vuejs', status: 'Chưa hoàn thành', description: 'Vẫn đang ngáo', priority: 'A+' }
+                ],
+                priorityAll: [
+                    'A+', 'A', 'B', 'C', 'D'
+                ],
+                statusAll: [
+                    'Hoàn thành', 'Chưa hoàn thành'
+                ]
+            },
+            methods: {
+                addJob: function () {
+                    let objectJob = {};
+                    objectJob.title = this.title;
+                    objectJob.status = this.status;
+                    objectJob.priority = this.priority;
+                    objectJob.description = this.description;
+                    if (objectJob.title == '' || objectJob.status == '' || objectJob.priority == '' || objectJob.description == '') {
+                        console.log('error');
+                    } else {
+                       this.jobAll.push(objectJob);
+
+                    }
+                },
+                deleteJob: function (stt) {
+                    this.jobAll.splice(stt, 1);
+                },
+                editJob: function (stt) {
+                    console.log(stt);
+                    this.jobAll[3].title = this.editTitle;
+                    this.jobAll[3].status = this.editStatus;
+                    this.jobAll[3].description = this.editPriority;
+                    this.jobAll[3].priority = this.editDescription;
+                }
+            }
+        })
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Getter and Setter</title>
+</head>
+
+<body>
+
+
+
+    <script>
+        // Cú pháp get kết nối thuộc tính đối tượng với một hàm mà 
+        // hàm này sẽ được gọi khi chúng ta lấy giá trị thuộc tính.
+
+        var obj = {
+            log: ['test', 'example'],
+            get latest() {
+                if (this.log.length == 0) return undefined;
+                return this.log[this.log.length - 1]; // == 1
+            }
+        }
+        console.log(obj.latest) // example
+
+
+        //Phương thức set thì ngược lại, nó cũng kết nối một thuộc
+        //tính với một hàm và hàm này được gọi khi thiết lập giá trị cho thuộc tính.
+        var language = {
+            log: [],
+            set current(name) {
+                this.log.push(name);
+            }
+
+        }
+        language.current = 'EN';
+        console.log(language.log); // ['EN']
+    </script>
+</body>
+
+</html>
