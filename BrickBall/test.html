@@ -8,151 +8,55 @@
 <html lang="en">
 
 <head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
-    crossorigin="anonymous">
-  <style>
-    .container {
-      background-image: url('back.jpg');
-      background-size: cover;
-      width: 1200px;
-      height: 850px;
-      margin: 0 auto;
-    }
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
+	crossorigin="anonymous">
+	<style>
+	.container {
 
-    img {
-      width: 100%;
-      padding-top: 30px;
-    }
+		margin: 0 auto;
+		position: relative;
+	}
+	#canvas {
+		background-image: url('back.jpg');
+		background-size: cover;
+	}
+	img {
+		width: 100%;
+		padding-top: 30px;
+	}
 
-    .col-md-1 {
-      padding-right: 5px;
-      padding-left: 5px;
-    }
+	.col-md-1 {
+		padding-right: 5px;
+		padding-left: 5px;
+	}
 
-    #test {
-      position: absolute;
-      width: 200px;
-      height: 30px;
-      background: black;
-      border-radius: 10px;
-      bottom: 60px;
-      right: 50%;
-    }
-  </style>
+	#test {
+		width: 200px;
+		height: 30px;
+		background: black;
+		border-radius: 10px;
+		bottom: 60px;
+		right: 50%;
+	}
+</style>
 </head>
 
 <body>
 
 
 
+	<div class="container">
+		<canvas class="container" id="canvas" style="border: 1px solid" width="1200px" height="900"></canvas>
+	</div>
 
 
-  <canvas id="canvas" style="border: 1px solid" width="1200" height="850">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-1">
-          <img src="images.jpg">
-        </div>
 
-        <div class="col-md-1">
-          <img src="images.jpg">
-        </div>
-
-        <div class="col-md-1">
-          <img src="images.jpg">
-        </div>
-
-        <div class="col-md-1">
-          <img src="images.jpg">
-        </div>
-
-        <div class="col-md-1">
-          <img src="images.jpg">
-        </div>
-
-        <div class="col-md-1">
-          <img src="images.jpg">
-        </div>
-
-        <div class="col-md-1">
-          <img src="images.jpg">
-        </div>
-
-        <div class="col-md-1">
-          <img src="images.jpg">
-        </div>
-
-        <div class="col-md-1">
-          <img src="images.jpg">
-        </div>
-
-        <div class="col-md-1">
-          <img src="images.jpg">
-        </div>
-
-        <div class="col-md-1">
-          <img src="images.jpg">
-        </div>
-
-        <div class="col-md-1">
-          <img src="images.jpg">
-        </div>
-
-        <div class="col-md-1">
-          <img src="images.jpg">
-        </div>
-
-        <div class="col-md-1">
-          <img src="images.jpg">
-        </div>
-
-        <div class="col-md-1">
-          <img src="images.jpg">
-        </div>
-
-        <div class="col-md-1">
-          <img src="images.jpg">
-        </div>
-
-        <div class="col-md-1">
-          <img src="images.jpg">
-        </div>
-
-        <div class="col-md-1">
-          <img src="images.jpg">
-        </div>
-
-        <div class="col-md-1">
-          <img src="images.jpg">
-        </div>
-
-        <div class="col-md-1">
-          <img src="images.jpg">
-        </div>
-
-        <div class="col-md-1">
-          <img src="images.jpg">
-        </div>
-
-        <div class="col-md-1">
-          <img src="images.jpg">
-        </div>
-
-        <div class="col-md-1">
-          <img src="images.jpg">
-        </div>
-
-        <div class="col-md-1">
-          <img src="images.jpg">
-        </div>
-      </div>
-    </div>
-  </canvas>
+	<div id="log"></div>
 
 
 
@@ -160,74 +64,63 @@
 
 
 
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+	crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+	crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
+	crossorigin="anonymous"></script>
+	<script>
+		$('.container').on("mousemove", function (event) {
+			$( "#log" ).text( "pageX: " + event.pageX + ", pageY: " + event.pageY );
+			// $("#test").css('left', event.clientX + "px")
+		});
+
+		var canvas = document.getElementById('canvas');
+		var ctx = canvas.getContext('2d');
+		var raf;
+		var ball = {
+			x: 100,
+			y: 100,
+			vx: 1,
+			vy: 1,
+			radius: 15,
+			color: 'green',
+			draw: function () {
+				ctx.beginPath();
+				ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, true);
+				ctx.closePath();
+				ctx.fillStyle = this.color;
+				ctx.fill();
+			}
+		};
+		function draw() {
+			ctx.clearRect(0, 0, canvas.width, canvas.height);
+			ball.draw();
+			ball.x += ball.vx;
+			ball.y += ball.vy;
+
+			if (ball.y + ball.vy > canvas.height ||
+				ball.y + ball.vy < 0) {
+				ball.vy = -ball.vy;
+			}
+			if (ball.x + ball.vx > canvas.width ||
+				ball.x + ball.vx < 0) {
+				ball.vx = -ball.vx;
+			}
+
+			raf = window.requestAnimationFrame(draw);
+		}
+
+		canvas.addEventListener('mouseover', function (e) {
+			raf = window.requestAnimationFrame(draw);
+		}); 
+		ball.draw();
 
 
-  <div id="test"></div>
-  <div id="log"></div>
-
-  <!-- Optional JavaScript -->
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
-    crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
-    crossorigin="anonymous"></script>
-  <script>
-    $('#canvas').on("mousemove", function (event) {
-      $("#log").text("pageX: " + event.clientX + ", pageY: " + event.pageY);
-      $("#test").css('left', event.clientX + "px")
-    });
-
-    var canvas = document.getElementById('canvas');
-    var ctx = canvas.getContext('2d');
-    var raf;
-
-    var ball = {
-      x: 100,
-      y: 100,
-      vx: 10,
-      vy: 10,
-      radius: 15,
-      color: 'green',
-      draw: function () {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, true);
-        ctx.closePath();
-        ctx.fillStyle = this.color;
-        ctx.fill();
-      }
-    };
-    function draw() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ball.draw();
-      ball.x += ball.vx;
-      ball.y += ball.vy;
-
-      if (ball.y + ball.vy > canvas.height ||
-        ball.y + ball.vy < 0) {
-        ball.vy = -ball.vy;
-      }
-      if (ball.x + ball.vx > canvas.width ||
-        ball.x + ball.vx < 0) {
-        ball.vx = -ball.vx;
-      }
-
-      raf = window.requestAnimationFrame(draw);
-    }
-
-    canvas.addEventListener('mouseover', function (e) {
-      raf = window.requestAnimationFrame(draw);
-    }); 
- 
-    canvas.addEventListener('mouseout', function (e) {
-      window.cancelAnimationFrame(raf);
-    });   
-
-    ball.draw();
-
-
-  </script>
+	</script>
 </body>
 
 </html>
