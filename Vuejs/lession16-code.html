@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    
+        <!-- So sánh computed, watch và methods trong Vue instance -->
+
+    <script>
+        var vm = new Vue({
+            el: '#welcome',
+            data: {
+                message: 'Hello',
+                name: 'World',
+                nameEdits: 0
+            },
+            computed: {
+                welcomeMessage: function () {
+                    return this.message + ' ' + this.name
+                }
+            },
+            watch: {
+                name: function () {
+                    if (this.message.toLowerCase() === 'reset') {
+                        this.nameEdits = 0
+                    } else {
+                        this.nameEdits += 1
+                    }
+                }
+            },
+            methods: {
+                numRenders: function () {
+                    console.log('Page rendered')
+                }
+            }
+        })
+
+        //Đầu tiên chúng ta xem phần computed, welcomeMessage chỉ được gọi khi message hoặc name thay 
+        //đổi vì nó phụ thuộc vào thuộc tính này. Vì vậy, nếu nameEdits thay đổi, welcomeMessage cũng không được gọi. 
+        //Thuộc tính Computed giúp ứng dụng hoạt động hiệu quả tối ưu mà vẫn có những phản ứng.
+
+// Tiếp theo chúng ta sang phần watch, nó đang giám sát thuộc tính name, có nghĩa là bất cứ khi nào name 
+// thay đổi, hàm khai báo sẽ được gọi để cập nhật nameEdits. Chú ý, mỗi watch chỉ giám sát trên một thuộc 
+// tính, ở đây là name, do đó khi nameEdits và message thay đổi, hàm này không được kích hoạt.
+
+// Cuối cùng, chúng ta xem phần methods, numRender được gọi mỗi khi render xong (cụ thể hơn là 
+// được gọi khi các đoạn mã gọi đến hoặc sự kiện người dùng khi giao diện đã được render), vì vậy 
+// bất cứ khi nào có gì đó được cập nhật trên giao diện người dùng, numberRenders được gọi. Ví dụ, nếu bạn 
+// có một ứng dụng hiển thị đồng hồ và nó cập nhật theo từng giây, tất cả các phương thức sẽ được 
+// gọi từng giây bất kể phương thức đó làm gì.
+    </script>
+</body>
+
+</html>

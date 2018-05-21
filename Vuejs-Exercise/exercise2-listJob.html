@@ -12,7 +12,6 @@
         h4 {
             display: inline-block;
             transform: rotate(7deg);
-
         }
 
         input {
@@ -158,8 +157,6 @@
                     </table>
             </div>
         </div>
-
-
     </div>
 
     </div>
@@ -221,6 +218,10 @@
                 },
                 sttJob: function (stt) {
                     this.sttNumber = stt;
+                    this.editTitle = this.jobAll[this.sttNumber].title;
+                    this.editStatus = this.jobAll[this.sttNumber].status;
+                    this.editPriority = this.jobAll[this.sttNumber].description;
+                    this.editDescription = this.jobAll[this.sttNumber].priority;
                 },
                 editJob: function () {
                     if (this.editTitle != '') {
@@ -242,31 +243,13 @@
                     $('#exampleModal').modal('hide');
 
                 },
-                //seachJob: function () {
-                //    console.log(this.keyword);
-                //    var postArr = this.jobAll,
-                //        keyword = this.keyword;
-                //    if (!keyword) {
-                //       return postArr;
-                //  }
-                //   keyword = keyword.trim().toLowerCase();
-                //   postArr = postArr.filter(function (item) {
-                //       if (item.title.toLowerCase().indexOf(keyword) !== -1) {
-                //            return item;
-                //       }
-                //   })
-                //  return postArr;
-                //}
+                seachJob: function () {
+                    this.jobAll = this.jobAll.filter(function (item) { return item.title.match(vm.keyword) });
+
+                }
             }
         })
-        var seachJob = function () {
-            //console.log(this.keyword);
-            // console.log(this.jobAll.filter(function(itemz){return itemz.title.match(this.keyword)}))
-            //this.jobAll = this.jobAll.filter(function(itemz){return itemz.title.match(this.keyword)});
-            //Chua nghi ra cach goi ben trong
-            vm.jobAll = vm.jobAll.filter(function (item) { return item.title.match(vm.keyword) });
 
-        }
     </script>
 
 </body>

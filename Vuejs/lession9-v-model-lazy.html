@@ -1,32 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
 </head>
 <style>
-h1{
-	color: red;
-}
+	h1 {
+		color: red;
+	}
 </style>
+
 <body>
 	<div id="app1">
 		<h3>{{message}}</h3>
 		<span>v-on va v-bind</span>
-		<input type="text" v-bind:value="message" v-on:keyup="message = $event.target.value"><br>
+		<input type="text" v-bind:value="message" v-on:keyup="message = $event.target.value">
+		<br>
 		<span>v-model</span>
-		<input type="text" v-model="message"><br>
+		<input type="text" v-model="message">
+		<br>
 		<span>v-model.lazy</span>
-		<input type="text" v-model.lazy="message"><br>
+		<input type="text" v-model.lazy="message">
+		<br>
 		<span>textarea</span>
-		<textarea  type="text" v-model="message"></textarea><br>
+		<textarea type="text" v-model="message"></textarea>
+		<br>
 		<span>checkbox</span>
-		<input type="checkbox" v-model="checkbox"><span>{{checkbox}}</span>
+		<input type="checkbox" v-model="checkbox">
+		<span>{{checkbox}}</span>
 		<h2> lap trinh wep can ban {{checkName}} </h2>
 		<h1>check radio</h1>
 		<input type="checkbox" value="CSS" v-model="checkName">
 		<input type="checkbox" value="HTML" v-model="checkName">
-		<input type="checkbox" value="JAVASCRIPT" v-model="checkName"><br>
+		<input type="checkbox" value="JAVASCRIPT" v-model="checkName">
+		<br>
 		<div>
 			<h1>check radio</h1>
 			<input type="radio" value="Phang" v-model="checkZ">
@@ -67,19 +75,20 @@ h1{
 			data: {
 				message: '1 bai test',
 				checkbox: true,
-				checkName:  [],
+				checkName: [],
 				checkZ: '',
 				selects: '',
 				selectd: [],
-				selectAll: 
-				[
-				{text: 'One', value: 1},
-				{text: 'Two', value: 2},
-				{text: 'Three', value: 3}
-				]
+				selectAll:
+					[
+						{ text: 'One', value: 1 },
+						{ text: 'Two', value: 2 },
+						{ text: 'Three', value: 3 }
+					]
 			}
 		})
 	</script>
 
-	</body>
-	</html>
+</body>
+
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <p>ClickA = {{ clickA }}</p>
+        <p>ClickB = {{ clickB }}</p>
+        <p>ClickC = {{ clickC() }}</p>
+        <p>ClickD = {{ clickD() }}</p>
+        <button v-on:click="a++">A++</button>
+        <button v-on:click="b++">B++</button>
+        <p>A = {{ propertyA }}</p>
+        <p>B = {{ propertyB }}</p>
+    </div>
+
+    <!-- Khi gọi computed ta không được thêm cặp dấu () đằng sau, điều đó tức là computed cũng không thể nhận tham số đầu vào như
+    methods.
+
+    Vì không nhận tham số đầu vào nên computed chỉ nên dùng với các dữ liệu có sẵn trong data của component computed
+    sẽ tính toán lại mỗi khi các biến phụ thuộc trong nó thay đổi, còn methods sẽ được tính toán lại bất kì khi nào nó được
+    gọi, nên nếu biết tận dụng computed để tính toán các dữ liệu có sẵn thì sẽ cải thiện được performance app của các bạn.
+
+    Điều tuyệt vời của computed là nó sẽ được cached nên giả sử bạn có 1 computed với hàng loạt tính toán, lặp trong đó,
+    thì nếu các các biến phụ thuộc không thay đổi thì khi sử dụng nó sẽ chỉ mất thời gian tính 1 lần, những lần sau kết quả
+    sẽ được sử dụng lại từ lần trước. 
+    Nhưng computed sẽ khác với methods ở chỗ computed được lưu vào cache và computed sẽ chỉ được thay đổi khi dữ liệu bên trong nó thay đổi.-->
+
+
+
+    <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                a: 0,
+                b: 0
+            },
+            //compute 
+            computed: {
+                clickA: function () {
+                    console.log('AAAAAA');
+                    return this.a;
+
+                },
+                clickB: function () {
+                    console.log('bbbbbb');
+                    return this.b;
+                },
+                propertyA: {
+                    get: function () {
+                        console.log('Tính toán thuộc tính A');
+                        return this.a;
+                    },
+                    set: function (number) {
+                        this.a = number;
+                    }
+                },
+                propertyB: function () {
+                    console.log('Tính toán thuộc tính B');
+                    return this.b;
+                }
+            },
+            methods: {
+                clickC: function () {
+                    console.log('CCCCCCCC');
+                    return this.a;
+
+                },
+                clickD: function () {
+                    console.log('DDDDDDD');
+                    return this.b;
+                }
+            }
+        })
+
+
+
+    </script>
+</body>
+
+</html>

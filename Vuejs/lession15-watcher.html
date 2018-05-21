@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Watcher</title>
+</head>
+
+<body>
+    <div id="app"></div>
+    <div class="container" id="app1">
+        <input class="form-control" type="text" @input="isSearching = true" v-model="searchQuery">
+        <p v-if="isSearching">Searching...</p>
+        <div v-else>
+            <ul class="list-group">
+                <li class="list-group-item" v-for="result in results">{{ result }}</li>
+            </ul>
+        </div>
+    </div>
+    <div id="test">
+        <input type="text" v-model="person.drivingLicense.issueDate">
+    </div>
+    <div id="app5">
+        <input type="text" v-model="counter">
+    </div>
+    <!-- Watcher trong Vue.js đúng như nghĩa của nó  có nghĩa là theo dõi, nó có nhiệm vụ theo dõi sự thay đổi của dữ liệu và thực thi hành động kèm theo.
+   Cú pháp: Để khai báo watcher trong vue.js thì các bạn cần phải tuân thủ các nguyên tắc sau:
+
+   tên của watcher phải trùng với tên của data cần theo dõi.
+   Và các watcher phải được đặt trong watch scope. -->
+
+
+
+    <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.5/lodash.min.js"></script>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                name: 'Vu Thanh Tai' //giá trị ban đầu.
+            },
+            watch: {
+                name: function () {
+                    console.log(this.name);
+                }
+            }
+        });
+        //thiết lập lại giá trị
+        app.name = "Nguyen Anh Thanh";
+
+
+        // 
+        var vm = new Vue({
+            el: '#app1',
+            data: {
+                searchQuery: '',
+                results: [],
+                isSearching: false
+            },
+            watch: {
+                // Tham số đầu tiên của watcher là newVal sẽ chứa giá trị mới nhất của 
+                // thuộc tính đang được “giám sát”, tham số thứ hai oldVal chứa giá trị trước khi 
+                // có thay đổi của thuộc tính được giám sát.Watcher cũng có thể chỉ có một tham số đầu vào.
+                searchQuery: _.debounce(function (newVal, oldVal) {
+                    console.log(newVal);
+                    console.log(oldVal);
+                    this.results = ['Vue.js', 'React', 'Angular 2', 'HTML', 'CSS'];
+                    this.isSearching = false;
+                }, 1000)
+            }
+        });
+
+
+
+
+        //Giám sát thuộc tính được lồng bên trong đối tượng
+        var cm = new Vue({
+            el: '#test',
+            data: {
+                person: {
+                    name: 'Nguyễn Văn A',
+                    drivingLicense: {
+                        id: 'GPLX0393928282',
+                        issueDate: '20180417',
+                        issueBy: 'Bộ GTVT'
+                    }
+                }
+            },
+            // Khi đó nếu chúng ta muốn giám sát thuộc tính issueDate thì sử dụng cú pháp tham chiếu đến thuộc tính thông qua dấu chấm.
+
+
+            // watch: {
+            //     'person.drivingLicense.issueDate': function(newVal, oldVal){
+            //         console.log(`Giấy phép được gia hạn từ ${oldVal} sang ${newVal} `);
+            //     }
+            // }
+
+
+            //Nếu không muốn sử dụng cách tham chiếu với dấu chấm và dấu nháy đơn có thể gói nó vào trong một computed property:
+            computed: {
+                namename() {
+                    return this.person.drivingLicense.issueDate;
+                },
+                clonePerson: function () {
+                    return JSON.parse(JSON.stringify(this.person));
+                }
+            },
+            watch: {
+                namename: function (newVal, oldVal) {
+                    console.log(`Giấy phép được gia hạn từ ${oldVal} sang ${newVal} `)
+                },
+                clonePerson: function (newVal, oldVal) {
+                    alert(JSON.stringify(newVal));
+                    alert(JSON.stringify(oldVal));
+                }
+            }
+
+
+            //Trên đây chúng ta mới chỉ giám sát sự thay đổi của các thuộc tính trong một đối tượng,
+            // nếu giám sát cả đối tượng thì thế nào? Trong watcher có thể khai báo mức độ giám sát thông qua thuộc tính deep
+
+
+            // watch: {
+            //     'person': {
+            //         handler: function (newVal, oldVal) {
+            //             console.log('Giám sát đối tượng', ' giá trị cũ: ', newVal, ' giá trị cũ:', oldVal)
+            //         },
+            //         deep: true
+            //     }
+            // }
+        })
+
+
+        //Với watcher được thêm vào ở ngoài Vue instance cũng có tham số để thiết lập xem chúng ta giám sát cả đối tượng 
+        cm.$watch('person', function (newVal, oldVal) {
+            alert(`Nhân sự thay đổi từ ${oldVal.drivingLicense.id} ${newVal.drivingLicense.id}`);
+        }, { deep: true });
+
+
+
+
+
+
+
+
+
+        // Chúng ta đã nói đến việc thêm watcher ở ngoài Vue instance, vậy làm cách nào để Vue không giám sát tiếp các 
+        // thuộc tính trong data? Rất đơn giản, phương thức $watch() trả về một phương thức mà nếu chúng ta gọi đến phương 
+        // thức này, Vue sẽ không giám sát thuộc tính trong data nữa.
+
+        var gm = new Vue({
+            el: '#app5',
+            data: {
+                counter: 1
+            }
+        });
+        var unwatch = gm.$watch(
+            function () {
+                return this.counter;
+            },
+            function (newValue, oldValue) {
+                alert(`Bộ đếm tăng từ: ${oldValue} lên ${newValue}`);
+            }
+        );
+        // Sau 20 giây ngừng giám sát thuộc tính counter của data
+        setTimeout(function () {
+            unwatch();
+        }, 2000);
+    </script>
+</body>
+
+</html>

@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Vue instance</title>
 	<link rel="stylesheet" href="">
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+	 crossorigin="anonymous">
 </head>
+
 <body>
 	<div id='app'>
 
@@ -18,7 +21,8 @@
 			Chỉ được thêm like sau 10 giây
 		</div>
 		<button type="button" class="btn btn-outline-primary" v-on:click="like">
-			<i class="far fa-thumbs-up"></i> Thích <span class="badge badge-pill badge-primary">{{ likes }}</span>
+			<i class="far fa-thumbs-up"></i> Thích
+			<span class="badge badge-pill badge-primary">{{ likes }}</span>
 		</button>
 
 
@@ -29,7 +33,7 @@
 		{{message}}
 	</div>
 	<div id="example">
-		
+
 	</div>
 
 	<div id="app3">
@@ -38,105 +42,105 @@
 	</div>
 
 
-<!-- computed: cho phép khai báo các phương thức trả về giá trị giống như methods nhưng chỉ tính toán lại khi có thay đổi, các phương thức trong methods thì luôn được tính toán lại mỗi lần gọi.
+	<!-- computed: cho phép khai báo các phương thức trả về giá trị giống như methods nhưng chỉ tính toán lại khi có thay đổi, các phương thức trong methods thì luôn được tính toán lại mỗi lần gọi.
 watch: khai báo các phương thức trả về giá trị phụ thuộc các biến khác và tự động cập nhật khi các biến đó thay đổi.
 template, component: tạo các thành phần có thể sử dụng lại giúp xây dựng những hệ thống lớn. -->
 
-<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
 
-<script>
-	var vm = new Vue({
-		el: '#app',
-		data: {
-			message: 'day la message',
-			likes: 9,
-			lastClickTime: null,
-			alert: false,
-		},
-		methods: {
-			like: function () {
-				if (this.lastClickTime === null || moment().diff(moment(this.lastClickTime), 'seconds') > 10) {
-					this.likes ++;
-					this.lastClickTime = moment().format();
-					this.alert = false
-				} else {
-					this.alert = true;
+	<script>
+		var vm = new Vue({
+			el: '#app',
+			data: {
+				message: 'day la message',
+				likes: 9,
+				lastClickTime: null,
+				alert: false,
+			},
+			methods: {
+				like: function () {
+					if (this.lastClickTime === null || moment().diff(moment(this.lastClickTime), 'seconds') > 10) {
+						this.likes++;
+						this.lastClickTime = moment().format();
+						this.alert = false
+					} else {
+						this.alert = true;
+					}
 				}
 			}
-		}
-	})
+		})
 
-  // có thể sử dụng phương thức $mount() trên Vue instance để thực hiện gán nó vào một phần tử HTML.
- //cach 1
- // vm.$mount('#app');
+		// có thể sử dụng phương thức $mount() trên Vue instance để thực hiện gán nó vào một phần tử HTML.
+		//cach 1
+		// vm.$mount('#app');
 
- //cach 2
- // vm.$mount(document.getElementById('app'));
-  // Phương thức $mount() hữu ích trong trường hợp tại thời điểm khởi tạo Vue instance chưa biết mount nó vào đâu.
-  
-
-
-
-  // ----------------------------------------------
-  // Bạn cũng hoàn toàn có thể khai báo các đối tượng từ trước và khi 
-  // khởi tạo thực thể Vue thì mới đưa đối tượng đó vào phần trả về của hàm data.
-  
-
-  var data = {message: 'concac'};
-  var test = new Vue({
-  	data: data
-  })
-  console.log(test.message === data.message); //true
-
-  test.message = 'Giới thiệu Vue.js';
-	console.log(data.message); // Có giá trị là 'Giới thiệu Vue.js'
-	// và ngược lại
-	data.message = 'Công cụ lập trình với Vue.js';
-	console.log(test.message );// Có giá trị là 'Công cụ lập trình với Vue.js'
+		//cach 2
+		// vm.$mount(document.getElementById('app'));
+		// Phương thức $mount() hữu ích trong trường hợp tại thời điểm khởi tạo Vue instance chưa biết mount nó vào đâu.
 
 
 
 
-	//------------------------------------
-	// Truy nhập đến Vue instance từ bên ngoài
-	var cm = new Vue({
-		el: '#app1',
-		data: {
-			message: 'Tài liệu Khóa học Vuejs miễn phí sẽ được hiển thị sau 3 giây!'
-		},
-		methods: {
-			alertUser: function (){
-				alert('Nhấp ok để tải tài liệu!');
+		// ----------------------------------------------
+		// Bạn cũng hoàn toàn có thể khai báo các đối tượng từ trước và khi 
+		// khởi tạo thực thể Vue thì mới đưa đối tượng đó vào phần trả về của hàm data.
+
+
+		var data = { message: 'concac' };
+		var test = new Vue({
+			data: data
+		})
+		console.log(test.message === data.message); //true
+
+		test.message = 'Giới thiệu Vue.js';
+		console.log(data.message); // Có giá trị là 'Giới thiệu Vue.js'
+		// và ngược lại
+		data.message = 'Công cụ lập trình với Vue.js';
+		console.log(test.message);// Có giá trị là 'Công cụ lập trình với Vue.js'
+
+
+
+
+		//------------------------------------
+		// Truy nhập đến Vue instance từ bên ngoài
+		var cm = new Vue({
+			el: '#app1',
+			data: {
+				message: 'Tài liệu Khóa học Vuejs miễn phí sẽ được hiển thị sau 3 giây!'
+			},
+			methods: {
+				alertUser: function () {
+					alert('Nhấp ok để tải tài liệu!');
+				}
 			}
-		}
-	});
-	setTimeout(function (){
-		cm.alertUser();
-		cm.message = 'Click vào đây để tải!';
-	}, 3000);
+		});
+		setTimeout(function () {
+			cm.alertUser();
+			cm.message = 'Click vào đây để tải!';
+		}, 3000);
 
 
-        //----------------------
-        //Vue instance còn có các thuộc tính và phương thức hữu ích khác, chúng được đặt 
-        //trước bởi dấu $ để phân biệt với các thành phần cơ bản ở trên, ví dụ $data, $el, $mount(), $watch()…
-        
-        var data = { a: 1 }
-        var dm = new Vue({
-        	el: '#example',
-        	data: data
-        })
+		//----------------------
+		//Vue instance còn có các thuộc tính và phương thức hữu ích khác, chúng được đặt 
+		//trước bởi dấu $ để phân biệt với các thành phần cơ bản ở trên, ví dụ $data, $el, $mount(), $watch()…
+
+		var data = { a: 1 }
+		var dm = new Vue({
+			el: '#example',
+			data: data
+		})
 		console.log(dm.$data === data); // -> true
 		console.log(dm.$el === document.getElementById('example')); // -> true
 		// $watch is an instance method
 		dm.$watch('a', function (newVal, oldVal) {
-		  // this callback will be called when `dm.a` changes
+			// this callback will be called when `dm.a` changes
 		})
 
 
 		//----------------------------------
 
 		//Hủy bỏ một thực thể Vue bang $destroy();
-		
+
 
 		var cl = new Vue({
 			el: '#app3',
@@ -144,10 +148,11 @@ template, component: tạo các thành phần có thể sử dụng lại giúp 
 				counter: 0
 			},
 		});
-		setTimeout(function() {
+		setTimeout(function () {
 			alert('Hủy Vue instance, không thể tăng bộ đếm được nữa!');
 			cl.$destroy();
 		}, 5000);
 	</script>
 </body>
+
 </html>
