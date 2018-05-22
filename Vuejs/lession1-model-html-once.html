@@ -15,7 +15,8 @@
 
 <body>
     <div id="app">
-        <h1>{{ message }}</h1>
+            <!-- không cập nhật lại khi dữ liệu thay đổi bằng v-once -->
+        <h1 v-once>{{ message }}</h1>
         <input v-model="message">
         <h1 v-html="message2"></h1>
         <input v-model="message2">

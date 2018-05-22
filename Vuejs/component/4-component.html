@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>component4</title>
+</head>
+
+<body>
+    <template id="hello-template">
+        <div>
+            <h1>{{message}}</h1>
+        </div>
+    </template>
+
+    <div id="app">
+        <!-- Bên trong các phần tử như <ul>, <ol>, <table> và <select> chúng ta chỉ có thể chứa một số phần tử nhất định(chẳng hạn <ul> chỉ chấp nhận <li>)
+                Ở đây component <hello-component> sẽ bị xem là một phần tử không hợp lệ bên trong <table> và bị đẩy ra ngoài (hoisted out) dẫn đến lỗi khi render.
+                Để giải quyết vấn đề này, ta có thể dùng thuộc tính đặc biệt is -->
+        <table>
+            <tr is="hello-component"></tr>
+        </table>
+    </div>
+
+
+
+    <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+    <script>
+        Vue.component('hello-component', {
+            data: function () {
+                return {
+                    message: `Xin chào mình là`,
+                   
+                }
+            },
+            template: '#hello-template'
+        })
+        new Vue({
+            el: '#app'
+        })
+    </script>
+</body>
+
+</html>
