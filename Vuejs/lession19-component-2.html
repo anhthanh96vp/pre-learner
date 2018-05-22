@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<title>Component-2</title>
 </head>
+
 <body>
-	<template  id="button-template">
+	<template id="button-template">
 		<div>
 			<button v-on:click="count++">Nhan vao day {{count}} lan`</button>
 		</div>
@@ -21,19 +23,19 @@
 	</div>
 
 
-<!-- Khi bạn đăng ký component bằng phương thức Vue.component() thì các component này được 
+	<!-- Khi bạn đăng ký component bằng phương thức Vue.component() thì các component này được 
 đăng ký toàn cục (globally registered), nghĩa là chúng có thể được sử dụng ở bất kỳ đầu 
 trong Vue instance gốc được tạo ra bằng câu lệnh new Vue. Ví dụ: -->
 
-<!-- Đăng ký toàn cục -->
-<div id="abc">
-	<component-a></component-a>
-	<component-b></component-b>
-	<component-c></component-c>
-</div>
+	<!-- Đăng ký toàn cục -->
+	<div id="abc">
+		<component-a></component-a>
+		<component-b></component-b>
+		<component-c></component-c>
+	</div>
 
 
-<!-- Đăng ký toàn cục gặp phải một vấn đề khi sử dụng với các hệ thống build code như Webpack, 
+	<!-- Đăng ký toàn cục gặp phải một vấn đề khi sử dụng với các hệ thống build code như Webpack, 
 các component toàn cục vẫn được đóng gói vào phiên bản cuối cùng mặc dù có thể nó không được gọi đến,
 việc này làm cho dung lượng ứng dụng không được tối ưu do có dư thừa code Javascript. Trong trường hợp này,
 chúng ta cần định nghĩa các component ở dạng các đối tượng đơn thuần trong Javascript: -->
@@ -45,61 +47,62 @@ chúng ta cần định nghĩa các component ở dạng các đối tượng đ
 
 
 
-<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
-<script>
-	Vue.component('button-counter',{
-		data: function(){
-			return {
-				count: 0
+	<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+	<script>
+		Vue.component('button-counter', {
+			data: function () {
+				return {
+					count: 0
+				}
+			},
+			template: '#button-template'
+		})
+		new Vue({
+			el: '#app'
+		});
+
+
+
+		// Đăng ký toàn cục
+		Vue.component('component-a', { /* ... */ })
+		Vue.component('component-b', { /* ... */ })
+		Vue.component('component-c', { /* ... */ })
+
+		new Vue({ el: '#abc' })
+
+
+
+		//Đăng ký cục bộ
+		var ComponentA = { /* ... */ }
+		var ComponentB = { /* ... */ }
+		var ComponentC = { /* ... */ }
+
+		// Sau đó định nghĩa các component trong tùy chọn components của Vue instance:
+		new Vue({
+			el: '#app'
+			components: {
+				'component-a': ComponentA,
+				'component-b': ComponentB
 			}
-		},
-		template: '#button-template'
-	})
-	new Vue({
-		el: '#app'
-	});
+		})
+
+
+		// Với cách đăng ký cục bộ (locally registered) các component không thể lồng vào nhau như ở đăng ký
+		// toàn cục. Do vậy nếu muốn sử dụng component A trong component B chúng ta buộc phải code như sau:
 
 
 
- // Đăng ký toàn cục
-Vue.component('component-a', { /* ... */ })
-Vue.component('component-b', { /* ... */ })
-Vue.component('component-c', { /* ... */ })
+		var ComponentA = { /* ... */ }
 
-new Vue({ el: '#abc' })
-
-
-
-//Đăng ký cục bộ
-var ComponentA = { /* ... */ }
-var ComponentB = { /* ... */ }
-var ComponentC = { /* ... */ }
-
-// Sau đó định nghĩa các component trong tùy chọn components của Vue instance:
-new Vue({
-	el: '#app'
-	components: {
-		'component-a': ComponentA,
-		'component-b': ComponentB
-	}
-})
-
-
-// Với cách đăng ký cục bộ (locally registered) các component không thể lồng vào nhau như ở đăng ký
-// toàn cục. Do vậy nếu muốn sử dụng component A trong component B chúng ta buộc phải code như sau:
-
-
-
-var ComponentA = { /* ... */ }
-
-var ComponentB = {
-	components: {
-		'component-a': ComponentA
-	},
-  // ...
-}
-</script>
+		var ComponentB = {
+			components: {
+				'component-a': ComponentA
+			},
+			// ...
+		}
+	</script>
 
 
 </body>
+
 </html>

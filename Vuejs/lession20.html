@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Phạm vi dữ liệu của component</title>
+</head>
+
+<body>
+    <template id="hello-template">
+        <h1>{{message}} {{userName}}</h1>
+    </template>
+
+    <div id="app">
+        <hello-component v-bind:user-name:="userName"></hello-component>
+    </div>
+
+
+    <!-- Trong ngôn ngữ HTML, khi muốn truyền một giá trị cho thuộc tính của thẻ HTML nào đó ta chỉ việc dùng cú pháp: -->
+    <html-tag property="value"></html-tag>
+    <html-tag v-bind:property-a="propertyB"></html-tag>
+
+    <!-- Chú ý: v-bind:property có thể viết ngắn gọn thành :property -->
+    <html-tag :property-a="propertyB">
+
+
+
+
+        <!-- Truyền một số vào component -->
+        <blog-post v-bind:likes="42"></blog-post>
+        <blog-post v-bind:likes="post.likes"></blog-post>
+
+        <!-- Truyền dữ liệu boolean vào component -->
+
+
+        <base-input v-bind:favorited="false"></base-input>
+        <base-input v-bind:favorited="post.currentUserFavorited"></base-input>
+
+        <!-- Truyền mảng vào component -->
+
+
+        <blog-post v-bind:comment-ids="[234, 266, 273]"></blog-post>
+        <blog-post v-bind:comment-ids="post.commentIds"></blog-post>
+
+
+
+        <!-- Truyền một đối tượng vào component -->
+        <blog-post v-bind:comments="{ id: 1, title: 'My Journey with Vue' }"></blog-post>
+        <blog-post v-bind:post="post"></blog-post>
+
+
+        <!-- Truyền một thuộc tính của một đối tượng vào component -->
+
+          <blog-post v-bind:id="post.id" v-bind:title="post.title"></blog-post>
+
+        <!-- post: {
+            id: 1,
+            title: 'My Journey with Vue'
+          } -->
+
+        <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+        <script>    
+
+            Vue.component('hello-component', {
+                data: function () {
+                    return {
+                        message: 'Xin chao'
+                    }
+                },
+                //Truyền dữ liệu thông qua thuộc tính props và bind lên kia
+                props: ['userName'],
+                template: '#hello-template'
+            })
+            new Vue({
+                el: '#app',
+                data: {
+                    userName: 'Thành'
+                }
+            })
+    //     Như vậy trong template chỉ được tham chiếu đến các thuộc tính dữ liệu được khai báo trong 
+    //     data của component? Đúng vậy, template chỉ có thể tham chiếu đến các thuộc tính trực tiếp
+    //  nếu thuộc tính đó của component. Với các thuộc tính, dữ liệu ở phạm vi ngoài component chúng 
+    //  ta phải sử dụng đến một cách khác sẽ được giới thiệu trong phần tiếp theo.
+
+        </script>
+</body>
+
+</html>

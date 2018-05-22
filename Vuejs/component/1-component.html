@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>TEST</title>
+</head>
+
+<body>
+
+    <div id="app">
+        <button-counter></button-counter>
+    </div>
+    <div id="mount-point"></div>
+
+    <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+    <script>
+        // Vue.component('button-counter', {
+        //     data: function () {
+        //         return {
+        //             count: 0
+        //         }
+        //     },
+        //     template: '<button v-on:click="count++">Bạn đã nhấn {{count}} lần</button">'
+        // })
+        // new Vue({
+
+        //     el: '#app'
+        // })
+
+        //Viết lại cách 2 
+
+        var ButtonCounter = Vue.extend({
+            data: function () {
+                return {
+                    count: 0
+                }
+            },
+            template: '<button v-on:click="count++">Bạn đã nhấn {{count}} lần</button">'
+        })
+
+
+        //Có thể gọi như này
+        // new Button().$mount('#app')
+
+
+        // Hoặc như thế này
+        Vue.component('button-counter', ButtonCounter)
+        new Vue({
+            el: '#app'
+        });
+
+
+        var Profile = Vue.extend({
+            data: function () {
+                return {
+                    aaa: 'aaa',
+                    bbb: 'bbb',
+                    ccc: 'ccc'
+
+                }
+            },
+            template: '<p>{{aaa}}, {{bbb}} and {{ccc}}</p>'
+        })
+        new Profile().$mount('#mount-point');
+    </script>
+
+</body>
+
+</html>

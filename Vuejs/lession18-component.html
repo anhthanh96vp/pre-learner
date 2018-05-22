@@ -1,37 +1,39 @@
-	<!DOCTYPE html>
-	<html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<title>Component</title>
-	</head>
-	<body>
-		
-		<div id="app">
-			<button-couter>
-				
-			</button-couter>
-		</div>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Component</title>
+</head>
+
+<body>
+
+	<div id="app">
+		<button-couter>
+
+		</button-couter>
+	</div>
 
 
-		<div id="mount-point">
-			
-		</div>
+	<div id="mount-point">
+
+	</div>
 
 
 
 
 
-		<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+	<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
 
 
-		<script>
+	<script>
 		// Tạo và đăng ký component vào hệ thống
 		// data phai la 1 function
-		var vm = Vue.component('button-couter',{
-			data: function(){
+		var vm = Vue.component('button-couter', {
+			data: function () {
 				return {
 					count: 0
-				}	
+				}
 			},
 			template: '<div><h1>Ví dụ 1</h1><button v-on:click="count++">Bạn đã nhấn {{ count }} lần.</button></div>'
 		})
@@ -47,17 +49,17 @@
 		//  
 		//  
 		//var ButtonCounter = Vue.extend({
-	        //     data: function () {
-	        //         return {
-	        //             count: 0
-	        //         }
-	        //     },
-	        //     template: '<button class="btn btn-success" v-on:click="count++">Bạn đã nhấn {{ count }} lần.</button>'
-	        // })
-	        // Vue.component('button-counter', ButtonCounter)
-	        // new Vue({
-	        //     el: '#app'
-	        // });
+		//     data: function () {
+		//         return {
+		//             count: 0
+		//         }
+		//     },
+		//     template: '<button class="btn btn-success" v-on:click="count++">Bạn đã nhấn {{ count }} lần.</button>'
+		// })
+		// Vue.component('button-counter', ButtonCounter)
+		// new Vue({
+		//     el: '#app'
+		// });
 
 
 
@@ -68,11 +70,11 @@
 
 
 		// Vue.extend()
-		
+
 
 
 		var Profile = Vue.extend({
-			data: function(){
+			data: function () {
 				return {
 					onecolor: 'Black',
 					twocolor: 'Red',
@@ -99,4 +101,5 @@
 
 	</script>
 </body>
+
 </html>
