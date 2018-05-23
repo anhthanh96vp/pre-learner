@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Star War</title>
+</head>
+
+<body>
+    <div>
+        <canvas id="canvas" width="1200" height="800" style="background-color: grey;"></canvas>
+    </div>
+
+    <script>
+        var canvas = document.getElementById('canvas');
+        var ctx = canvas.getContext('2d');
+        var gun = {
+            width: 40,
+            height: 60,
+            x: 575,
+            y: 735,
+            vx: 10,
+            draw: function () {
+                ctx.fillStyle = "red";
+                ctx.fillRect(this.x, this.y, this.width, this.height);
+            }
+        }
+        var bulletAll = [];
+        var starAll = [];
+
+        document.addEventListener("keydown", function (event) {
+            if (event.keyCode == '37') {
+                gun.x -= gun.vx;
+                if (gun.x < 1) { gun.x = 1200; }
+            }
+            if (event.keyCode == '39') {
+                gun.x += gun.vx;
+                if (gun.x > 1200) { gun.x = 1; }
+            }
+        });
+        function starTime() {
+            setInterval(function () {
+                var star = {
+                    width: 60,
+                    height: 60,
+                    x: Math.round(Math.random() * 1200),
+                    y: 0,
+                    vy: 1,
+                    draw: function () {
+                        ctx.fillStyle = "pink";
+                        ctx.fillRect(this.x, this.y, this.width, this.height);
+                    }
+                }
+                starAll.push(Object.create(star));
+            }, 2000);
+        }
+        document.addEventListener("keydown", function (event) {
+            if (event.keyCode == "32") {
+                var bullet = {
+                    width: 10,
+                    height: 10,
+                    x: gun.x + 15,
+                    y: gun.y - 10,
+                    vy: 50,
+                    draw: function () {
+                        ctx.fillStyle = "green";
+                        ctx.fillRect(this.x, this.y, this.width, this.height);
+                    }
+                }
+                bulletAll.push(bullet);
+            }
+        })
+
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            gun.draw();
+            for (i = 0; i < bulletAll.length; i++) {
+                bulletAll[i].draw();
+                bulletAll[i].y -= bulletAll[i].vy;
+            }
+            for (j = 0; j < starAll.length; j++) {
+                starAll[j].draw();
+                starAll[j].y += starAll[j].vy;
+            }
+            requestAnimationFrame(draw);
+            for (i = 0; i < starAll.length; i++) {
+                for (j = 0; j < bulletAll.length; j++) {
+                    if (starAll[i].y <= bulletAll[j].y + 10 && starAll[i].y + 60 >= bulletAll[j].y) {
+                        //Cạnh trên star và cạnh dưới bullet
+                        //Cạnh dưới star và cạnh trên bullet
+                        console.log('trúng')
+                    }
+                }
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        starTime();
+        draw();
+    </script>
+</body>
+
+</html>
