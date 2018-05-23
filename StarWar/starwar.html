@@ -13,6 +13,9 @@
     </div>
 
     <script>
+        console.log('%cDừng lại!', 'color: red; font-size: 50px; font-family: sans-serif; text-shadow: 1px 1px 5px #000;');
+        console.log('%cCó vẻ như bạn đang cố tình hack website của chúng tôi!', 'color: #444; font-size: 25px; font-family: sans-serif;');
+        console.log('%cTruy cập http://google.com/ để biết thêm thông tin chi tiết.', 'color: #444; font-size: 25px; font-family: sans-serif;');
         var canvas = document.getElementById('canvas');
         var ctx = canvas.getContext('2d');
         var gun = {
@@ -88,24 +91,24 @@
             for (i = 0; i < starAll.length; i++) {
                 for (j = 0; j < bulletAll.length; j++) {
                     if (starAll[i].y <= bulletAll[j].y + 10 && starAll[i].y + 60 >= bulletAll[j].y) {
-                       if(starAll[i].x + 50 > bulletAll[j].x && bulletAll[j].x > starAll[i].x-10){
-                           starAll.splice(i, 1);
-                           bulletAll.splice(j, 1);
-                           result++;
-                           if(result == 15){console.log('win')}
-                           //pHẢI CHO NGỪNG GAME
-                           }
-                       }
+                        if (starAll[i].x + 50 > bulletAll[j].x && bulletAll[j].x > starAll[i].x - 10) {
+                            starAll.splice(i, 1);
+                            bulletAll.splice(j, 1);
+                            result++;
+                            if (result == 15) { console.log('win') }
+                            //pHẢI CHO NGỪNG GAME
+                        }
                     }
-                    if (starAll[i].y <= gun.y + 60 && starAll[i].y + 60 >= gun.y){
-                         if(starAll[i].x +60 > gun.x && starAll[i].x < gun.x +40){
-                             console.log('thua');
-                             //pHẢI CHO NGỪNG GAME
-                           }
+                }
+                if (starAll[i].y <= gun.y + 60 && starAll[i].y + 60 >= gun.y) {
+                    if (starAll[i].x + 60 > gun.x && starAll[i].x < gun.x + 40) {
+                        console.log('thua');
+                        //pHẢI CHO NGỪNG GAME
                     }
-                    if(starAll[i].y + 60 > 800){ starAll.splice(i, 1); console.log('thua');}
-                }   //pHẢI CHO NGỪNG GAME
-                   
+                }
+                if (starAll[i].y + 60 > 800) { starAll.splice(i, 1); console.log('thua'); }
+            }   //pHẢI CHO NGỪNG GAME
+
         }
 
 
