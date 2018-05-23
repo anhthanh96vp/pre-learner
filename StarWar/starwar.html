@@ -8,7 +8,7 @@
 </head>
 
 <body>
-    <div>
+    <div style="text-align: center">
         <canvas id="canvas" width="1200" height="800" style="background-color: grey;"></canvas>
     </div>
 
@@ -28,7 +28,7 @@
         }
         var bulletAll = [];
         var starAll = [];
-
+        var result = 0;
         document.addEventListener("keydown", function (event) {
             if (event.keyCode == '37') {
                 gun.x -= gun.vx;
@@ -44,7 +44,7 @@
                 var star = {
                     width: 60,
                     height: 60,
-                    x: Math.round(Math.random() * 1200),
+                    x: Math.round(Math.random() * 1200) + 60,
                     y: 0,
                     vy: 1,
                     draw: function () {
@@ -88,12 +88,24 @@
             for (i = 0; i < starAll.length; i++) {
                 for (j = 0; j < bulletAll.length; j++) {
                     if (starAll[i].y <= bulletAll[j].y + 10 && starAll[i].y + 60 >= bulletAll[j].y) {
-                        //Cạnh trên star và cạnh dưới bullet
-                        //Cạnh dưới star và cạnh trên bullet
-                        console.log('trúng')
+                       if(starAll[i].x + 50 > bulletAll[j].x && bulletAll[j].x > starAll[i].x-10){
+                           starAll.splice(i, 1);
+                           bulletAll.splice(j, 1);
+                           result++;
+                           if(result == 15){console.log('win')}
+                           //pHẢI CHO NGỪNG GAME
+                           }
+                       }
                     }
-                }
-            }
+                    if (starAll[i].y <= gun.y + 60 && starAll[i].y + 60 >= gun.y){
+                         if(starAll[i].x +60 > gun.x && starAll[i].x < gun.x +40){
+                             console.log('thua');
+                             //pHẢI CHO NGỪNG GAME
+                           }
+                    }
+                    if(starAll[i].y + 60 > 800){ starAll.splice(i, 1); console.log('thua');}
+                }   //pHẢI CHO NGỪNG GAME
+                   
         }
 
 
