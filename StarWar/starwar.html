@@ -16,32 +16,26 @@
         console.log('%cDừng lại!', 'color: red; font-size: 50px; font-family: sans-serif; text-shadow: 1px 1px 5px #000;');
         console.log('%cCó vẻ như bạn đang cố tình hack website của chúng tôi!', 'color: #444; font-size: 25px; font-family: sans-serif;');
         console.log('%cTruy cập http://google.com/ để biết thêm thông tin chi tiết.', 'color: #444; font-size: 25px; font-family: sans-serif;');
-        var canvas = document.getElementById('canvas');
-        var ctx = canvas.getContext('2d');
-        var gun = {
+        let canvas = document.getElementById('canvas');
+        let ctx = canvas.getContext('2d');
+        let gun = {
             width: 40,
             height: 60,
             x: 575,
             y: 735,
-            vx: 10,
+            vx: 5,
             draw: function () {
                 ctx.fillStyle = "red";
                 ctx.fillRect(this.x, this.y, this.width, this.height);
             }
         }
-        var bulletAll = [];
-        var starAll = [];
-        var result = 0;
-        document.addEventListener("keydown", function (event) {
-            if (event.keyCode == '37') {
-                gun.x -= gun.vx;
-                if (gun.x < 1) { gun.x = 1200; }
-            }
-            if (event.keyCode == '39') {
-                gun.x += gun.vx;
-                if (gun.x > 1200) { gun.x = 1; }
-            }
-        });
+        let bulletAll = [];
+        let starAll = [];
+        let result = 0;
+        let run;
+        let gunMove = [];
+
+
         function starTime() {
             setInterval(function () {
                 var star = {
@@ -65,7 +59,7 @@
                     height: 10,
                     x: gun.x + 15,
                     y: gun.y - 10,
-                    vy: 50,
+                    vy: 12,
                     draw: function () {
                         ctx.fillStyle = "green";
                         ctx.fillRect(this.x, this.y, this.width, this.height);
@@ -77,8 +71,11 @@
 
 
         function draw() {
+            
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             gun.draw();
+            moveGun();
+            run = requestAnimationFrame(draw);
             for (i = 0; i < bulletAll.length; i++) {
                 bulletAll[i].draw();
                 bulletAll[i].y -= bulletAll[i].vy;
@@ -87,7 +84,6 @@
                 starAll[j].draw();
                 starAll[j].y += starAll[j].vy;
             }
-            requestAnimationFrame(draw);
             for (i = 0; i < starAll.length; i++) {
                 for (j = 0; j < bulletAll.length; j++) {
                     if (starAll[i].y <= bulletAll[j].y + 10 && starAll[i].y + 60 >= bulletAll[j].y) {
@@ -95,32 +91,53 @@
                             starAll.splice(i, 1);
                             bulletAll.splice(j, 1);
                             result++;
-                            if (result == 15) { console.log('win') }
-                            //pHẢI CHO NGỪNG GAME
+                            console.log('result');
+                            if (result == 30) { console.log('win') }
                         }
                     }
                 }
+            }
+            
+            for(i=0; i<starAll.length;i++){
                 if (starAll[i].y <= gun.y + 60 && starAll[i].y + 60 >= gun.y) {
                     if (starAll[i].x + 60 > gun.x && starAll[i].x < gun.x + 40) {
-                        console.log('thua');
-                        //pHẢI CHO NGỪNG GAME
+                        cancelAnimationFrame(run);
                     }
                 }
-                if (starAll[i].y + 60 > 800) { starAll.splice(i, 1); console.log('thua'); }
-            }   //pHẢI CHO NGỪNG GAME
-
+                if (starAll[i].y + 60 > 800) {
+                    cancelAnimationFrame(run);
+                }
+            }
         }
 
 
+        document.addEventListener('keydown', function (event) {
+            if (event.keyCode == 37) {
+                gunMove[event.keyCode] = true;
+            }
+            if (event.keyCode == 39) {
+                gunMove[event.keyCode] = true;
+            }
+        });
+        document.addEventListener('keyup', function (event) {
+            if (event.keyCode == 37) {
+                gunMove[event.keyCode] = false;
+            }
+            if (event.keyCode == 39) {
+                gunMove[event.keyCode] = false;
+            }
+        });
 
-
-
-
-
-
-
-
-
+        function moveGun() {
+            if (gunMove[37] == true) {
+                gun.x -= gun.vx;
+                if (gun.x < 1) { gun.x = 1200; }
+            }
+            if (gunMove[39] == true) {
+                gun.x += gun.vx;
+                if (gun.x > 1200) { gun.x = 1; }
+            }
+        }
 
 
 
