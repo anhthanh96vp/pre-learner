@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+
+
+        //Tạo 1 tham số callback truyền vào function
+        function abc(callback) {
+            //bien là 1 biến của function call back
+            return bien = 'đây là biến của callback'
+        }
+
+        //Ở đây vai trò của biến callback đã là 1 function
+        //tham số ok là bien ở bên trên
+        var ggg = abc(function (ok) {
+            return ok;
+        })
+        //gọi lại hàm ggg
+        console.log(ggg);
+
+
+
+        //This ở trong object ở đây là trỏ vào domainInfo
+        var domainInfo = {
+            name: 'freetuts.net',
+            setName: function (name) {
+                console.log(this);
+                console.log(this.name);
+            }
+        }
+
+        //This ở trong function ở đây là trỏ ra ngoài windows
+        function test() {
+            aaa = 'okokok';
+            console.log(this.aaa);
+        }
+
+
+
+        //Gọi callback trong lời gọi hàm    
+        function test1(name, callback) {
+            console.log(`Đoạn text  ${name}`);
+            callback();
+        }
+        test1('đầu tiên', function () {
+            console.log('Đoạn text thứ 2');
+        })
+
+
+        //Gọi callback kiểu này có thể tái sử dụng
+        function test2(name, callback) {
+            console.log(`Ví dụ 2, đoạn văn ${name}`);
+            callback();
+        }
+        function funCallback() {
+            console.log(`Ví dụ 2, đoạn văn 2`)
+        }
+        test2(`1`, funCallback);
+
+
+        function con_tho_an_co(callback007) {
+            setTimeout(function () {
+                console.log('con thỏ ăn cỏ, uống nước');
+                callback007(); // đây là lúc điệp viên báo cáo cho sếp !
+            }, 1000);
+        }
+
+        // con thỏ chui vô hang
+        function hotel() {
+            console.log('chui vô hotel');
+        }
+
+        // điệp viên nằm vùng callback sẽ gọi hotel luôn dùm con thỏ.
+        var callback = function () {
+            hotel();
+        }
+        con_tho_an_co(callback);
+
+    </script>
+</body>
+
+</html>
