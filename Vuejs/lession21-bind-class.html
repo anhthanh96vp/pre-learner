@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bind Class</title>
+    <style>
+        .available{
+            color: red;
+            font-size: 50px;
+            display: inline;
+        }
+        .nearby {
+            display: inline;
+            font-size: 50px;
+            background-color: green;
+        }
+    
+    </style>
+</head>
+
+<body>
+    <div id="app">
+
+        <h1>CSS</h1>
+        <!-- <div v-on:click="available = !available"  v-bind:class="{available: available}">
+                Ryu
+        </div> -->
+        <div v-bind:class="setClass">
+            <span>Hello</span>
+        </div>
+        <button v-on:click="available = !available">Click1</button>
+        <button v-on:click="nearby = !nearby">Click2</button>
+
+    </div>
+    <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                available: false,
+                nearby: false,
+            },
+            computed: {
+                setClass: function(){
+                    return {
+                        available: this.available,
+                        nearby: this.nearby
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -13,9 +13,6 @@
     </div>
 
     <script>
-        console.log('%cDừng lại!', 'color: red; font-size: 50px; font-family: sans-serif; text-shadow: 1px 1px 5px #000;');
-        console.log('%cCó vẻ như bạn đang cố tình hack website của chúng tôi!', 'color: #444; font-size: 25px; font-family: sans-serif;');
-        console.log('%cTruy cập http://google.com/ để biết thêm thông tin chi tiết.', 'color: #444; font-size: 25px; font-family: sans-serif;');
         let canvas = document.getElementById('canvas');
         let ctx = canvas.getContext('2d');
         let gun = {
@@ -138,10 +135,6 @@
                 if (gun.x > 1200) { gun.x = 1; }
             }
         }
-
-
-
-
 
         starTime();
         draw();
