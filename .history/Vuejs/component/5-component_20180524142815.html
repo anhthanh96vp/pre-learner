@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+    <template id="hello-template">
+        <div>
+            <h1>{{message}} {{userName}}</h1>
+        </div>
+    </template>
+    <template id="form-template">
+        <div>
+            <input type="text" v-model="userName">
+        </div>
+    </template>
+
+    <template id="all-template">
+        <div>
+        <hello-component :user-name="userName"></hello-component>
+        <form-component :user-name="userName"></form-component>
+        </div>
+    </template>
+
+
+
+
+    <div id="app">
+           
+           
+   
+            <all-component></all-component>
+
+    </div>
+
+
+
+
+
+
+
+        <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+        <script type="text/javascript">
+            Vue.component('hello-component',{
+                template: '#hello-template',
+                data: function(){
+                    return {
+                        message: 'Xin chào'
+                    }
+                },
+                props: ['userName']
+                
+            })
+            Vue.component('form-component',{
+                template: '#form-template',
+                props: ['userName']
+            })
+            Vue.component('all-component',{
+                template: '#all-template',
+                data: function(){
+                    return {
+                        userName: 'Thành'
+                    }
+                }
+
+            })
+            new Vue ({
+                el: '#app'
+            })
+        </script>
+</body>
+</html>

@@ -13,81 +13,13 @@
 
 
 
-        <template id="hello-template">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h1>{{ message }} {{ uperCaseUser }}</h1>
-                    </div>
-                </div>
-            </template>
-            <template id="form-template">
-                <div class="row">
-                    <div class="col-md-3">
-                        <label for="name">Tên bạn là gì?</label>
-                    </div>
-                    <div class="col-md-9">
-                        <input class="form-control" :value="userName" type="text" @input="onInput">
-                    </div>
-                </div>
-            </template>
-            <template id="greeting-template">
-                <div>
-                    <form-component :user-name="userName" @emit-input="formInput"></form-component>
-                    <hello-component :user-name="userName"></hello-component>
-                </div>
-            </template>
-        
-            <div class="container" id="app">
-                <greeting-component></greeting-component>
-            </div>
-
-
-
 
 
 
 
         <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
         <script type="text/javascript">
-            Vue.component('hello-component',{
-                data: function (){
-                    return {
-                        message: 'Xin chào'
-                    }
-                },
-                computed: {
-                    uperCaseUser: function (){
-                        return this.userName.trim().toUpperCase()
-                    }
-                },
-                props: ['userName'],
-                template: '#hello-template'
-            })
-            Vue.component('form-component', {
-                template: '#form-template',
-                props: ['userName'],
-                methods: {
-                    onInput: function (event){
-                        this.$emit('emit-input', event.target.value)
-                    }
-                }
-            });
-            Vue.component('greeting-component', {
-                template: '#greeting-template',
-                data: function () {
-                    return {
-                        userName: 'Allaravel'
-                    }
-                },
-                methods: {
-                    formInput: function (val){
-                        this.userName = val
-                    }
-                }
-            });
-            new Vue({
-                el: '#app'
-            });
+     
         </script>
 </body>
 </html>
