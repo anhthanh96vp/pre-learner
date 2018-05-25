@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <script>
+        var array = ['one', 'two', 'three', 'four', 'five'];
+
+        //Xóa phần tử cuối của mảng
+        array.pop();
+
+// ------- Hàm forEach
+        //Viết kiểu 1
+        array.forEach(output);
+        function output(item, index, array){
+            console.log(`item: ${item} + index : ${index} + arr : ${array}`)
+        }
+
+        //Viết kiểu 2
+        array.forEach(function (item, index, array){
+            console.log(`item: ${item} + index : ${index} + arr : ${array}`)
+        });
+        
+//---------- Vòng lặp for
+
+        for(ar in array){
+            console.log(ar);
+        }
+        for(ar of array){
+            console.log(ar);
+        }
+    </script>
+</body>
+</html>
