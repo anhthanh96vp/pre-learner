@@ -1,71 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/all.js" integrity="sha384-xymdQtn1n3lH2wcu0qhcdaOpQwyoarkgLVxC/wZ5q7h9gHtxICrpcaSUfygqZGOe"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/style.css">
     <title>Blog</title>
 </head>
-<style>
-    *{
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-    }
-    .box1{background: green}
-    .box2{background: red}
-    .box3{background: black}
-    .box4{background: yellow}
-    .box5{background: pink}
-    .box6{background: palegreen} 
-    .box7{background: firebrick} 
-    .box8{background: crimson}
-    .box9{background: rebeccapurple}
-    .box10{background: aqua}
-    .container1{
-        display: flex;
-        height: 100vh;
-    }
-    .container1 img {
-        width: 100%;
-    }
-
-    .box{
-        color: white;
-        font-size: 30px;
-        text-align: center;
-        text-shadow: 4px 4px 0 black;
-        padding: 10px;
-        width: 33%;
-    }
-
-    .container { 
-        display: flex;
-        border: 1px solid;
-        min-height: 100vh;
-        flex-direction: row;
-        flex-wrap: wrap;
- 
-    }
-  
-</style>
 
 <body>
-    <!-- <div class="container1">
-        <img src="images/pexels-photo-270366.jpeg" alt="">
-    </div>     -->
-    <div class="container">
-        <div class="box1 box">1</div>
-        <div class="box2 box">2</div>
-        <div class="box3 box">3</div>
-        <div class="box4 box">4</div>
-        <div class="box5 box">5</div>
-        <div class="box6 box">6</div>
-        <div class="box7 box">7</div>
-        <div class="box8 box">8</div>
-        <div class="box9 box">9</div>
-        <div class="box10 box">10</div>
-    </div>
+    <header>
+        <article class="tool">
+            <div class="tool__logo">
+                <img src="images/Logo.png" alt="">
+            </div>
+            <div class="tool__">
+                <div>
+                    <input type="text" placeholder="Seach">
+                    <button>
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+            <div>
+                <ul>
+                    <li>
+                        <i class="fas fa-sign-in-alt"></i> Sign in</li>
+                    <li>Sign up</li>
+                </ul>
+            </div>
+        </article>
+        <aside>
+            <!-- <img src="images/banner.jpeg" alt=""> -->
+        </aside>
+    </header>
 
+    <section>
+        <article>
+            <nav>
+                <ul>
+                    <li><a href="">Bài viết mới</a></li>
+                    <li><a href="">Bài viết hay</a></li>
+                    <li><a href="">Series</a></li>
+                </ul>
+            </nav>
+
+            <div>
+                <div>
+                    <img src="images/logo.jpg" alt="">
+                </div>
+                <div>
+                    <div>
+                        Tiêu đề bài viết
+                    </div>
+                    <div>
+                        <ul>
+                            <li><a href="">Javascript</a></li>
+                            <li><a href="">HTML</a></li>
+                            <li><a href="">CSS</a></li>
+                            <li><a href="">Bootstrap</a></li>
+                            <li><a href="">Nodejs</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p>In CSS 2.1, four layout modes were defined which determine the size and position of boxes based on their relationships with their sibling and ancestor boxes: the block layout designed for laying out documents, and that lays elements on a page vertically</p>
+                    </div>
+                    <div>
+                        <span>Nguyễn văn A viết 1 ngày trước</span>
+                    </div>
+                </div>
+                <div>
+                    <ul>
+                        <li><i class="far fa-eye"></i></li>
+                        <li><i class="far fa-comment"></i></li>
+                    </ul>
+                </div>
+            </div>
+        </article>
+        <aside>
+            <div>
+                <div>
+                    <i class="fas fa-trophy"></i> Tác giả nổi bật
+                </div>
+                <div>
+                    <ul>
+                        <li><i class="fas fa-user-circle"></i> Nguyễn Văn A</li>
+                        <li><i class="fas fa-user-circle"></i> Nguyễn Văn A</li>
+                        <li><i class="fas fa-user-circle"></i> Nguyễn Văn A</li>
+                        <li><i class="fas fa-user-circle"></i> Nguyễn Văn A</li>
+                        <li><i class="fas fa-user-circle"></i> Nguyễn Văn A</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div>
+                <div>
+                    <i class="fas fa-tag"></i> Tag phổ biến
+                </div>
+                <div>
+                    <a href="">Android<span>100</span></a>
+                    <a href="">Android<span>100</span></a>
+                    <a href="">Android<span>100</span></a>
+                    <a href="">Android<span>100</span></a>
+                    <a href="">Android<span>100</span></a>
+                    <a href="">Android<span>100</span></a>
+                    <a href="">Android<span>100</span></a>
+                    <a href="">Android<span>100</span></a>
+                    <a href="">Android<span>100</span></a>
+                    <a href="">Android<span>100</span></a>
+                </div>
+            </div>
+        </aside>
+    </section>
+    <footer></footer>
 </body>
+
 </html>
