@@ -146,14 +146,11 @@
 <body>
     <div id="app">
         <ul>
-            <li>
-                <b class="player blue"></b>
-            </li>
-
-            <li>
-                <b class="player red"></b>
-            </li>
-
+            <template v-for="(row, i) in gird">
+                <li  @click="click(event)"  v-for="(cell, j) in row">
+                    <b class="player"></b>
+                </li>
+            </template>
         </ul>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
@@ -161,9 +158,29 @@
         new Vue({
             el: '#app',
             data: {
-                gird: []
+                checkClick: true,
+                gird: [],
             },
-            methods
+            created: function () {
+                this.init()
+            },
+            methods: {
+                init: function () {
+                    var rows = [];
+                    for (let i = 0; i < 3; i++) {
+                        rows[i] = ['', '', '']
+                    }
+                    this.gird = rows;
+                },
+                click: function(s){
+                    if(this.checkClick == true ){
+                        s.target.children[0].classList.add('red');
+                    }else {
+                        s.target.children[0].classList.add('blue');
+                    }
+                    this.checkClick = !this.checkClick
+                }
+            }
         })
     </script>
 </body>
