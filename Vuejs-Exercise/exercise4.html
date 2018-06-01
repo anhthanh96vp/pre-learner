@@ -5,9 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shopping</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
-        crossorigin="anonymous">
-
     <style>
         * {
             box-sizing: border-box;
@@ -320,8 +317,7 @@
             }
 
             .container {
-                width: 75%;
-                max-width: 960px;
+                max-width: 1140px;
             }
 
             .thumbnail,
@@ -372,11 +368,11 @@
                 <li>Shopping Cart</li>
             </ul>
 
-            <span class="count">3 items in the bag</span>
+            <span class="count">{{itemsCart}} items in the bag</span>
         </header>
 
         <section class="container">
-            <ul class="products" v-for="pro of products">
+            <ul class="products" v-for="(pro, index) of products">
                 <li class="row">
                     <div class="col left">
                         <div class="thumbnail">
@@ -392,15 +388,13 @@
                             <div class="price">${{pro.price}}</div>
                         </div>
                     </div>
-
                     <div class="col right">
                         <div class="quantity">
                             <input type="number" class="quantity" step="1" v-model:value="pro.quantity" />
                         </div>
-
                         <div class="remove">
-                            <svg version="1.1" class="close" xmlns="//www.w3.org/2000/svg" xmlns:xlink="//www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 60 60"
-                                enable-background="new 0 0 60 60" xml:space="preserve">
+                            <svg :value="index" @click="deleteProduct(event)" version="1.1" class="close" xmlns="//www.w3.org/2000/svg" xmlns:xlink="//www.w3.org/1999/xlink"
+                                x="0px" y="0px" viewBox="0 0 60 60" enable-background="new 0 0 60 60" xml:space="preserve">
                                 <polygon points="38.936,23.561 36.814,21.439 30.562,27.691 24.311,21.439 22.189,23.561 28.441,29.812 22.189,36.064 24.311,38.186 30.562,31.934 36.814,38.186 38.936,36.064 32.684,29.812"></polygon>
                             </svg>
                         </div>
@@ -413,7 +407,7 @@
             <div class="promotion">
                 <label for="promo-code">Have A Promo Code?</label>
                 <input type="text" id="promo-code" v-model:value="test" />
-                <button type="button" v-on:click="checkSale()"></button>
+                <button type="button" @click="checkSale()"></button>
             </div>
 
             <div class="summary">
@@ -425,7 +419,7 @@
                         <span>${{tax}}</span>
                     </li>
                     <li class="total">Total
-                        <span>$26.97</span>
+                        <span>${{moneyTotal}}</span>
                     </li>
                 </ul>
             </div>
@@ -446,13 +440,14 @@
                 money2: 0,
                 tax: 10,
                 test: '',
+                sale: '100%',
                 products: [
                     {
                         image: "data:image/jpeg;base64,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",
                         name: "SẢN PHẦM 1",
                         description: " MÔ TẢ THỨ 1",
                         price: 7.99,
-                        quantity: 5
+                        quantity: 1
                     },
                     {
                         image: "https://thumbor.forbes.com/thumbor/960x0/https%3A%2F%2Fblogs-images.forbes.com%2Fforbes-finds%2Ffiles%2F2018%2F03%2Fnike-640.jpg",
@@ -500,18 +495,38 @@
             },
             computed: {
                 checkMoney: function () {
+                    this.money = 0;
                     for (let i = 0; i < this.products.length; i++) {
                         this.money += this.products[i].price * this.products[i].quantity;
                     }
-                    return this.money2 = this.money + this.tax;
+                    return (this.money).toFixed(2);
                 },
                 checkSale: function () {
                     for (let i = 0; i < this.promotions.length; i++) {
                         if (this.test == this.promotions[i].code) {
-                            return this.money2 * parseInt(this.promotions[i].discount);
+                            return this.sale = this.promotions[i].discount;
+                        } else {
+                            return alert('Nhập sai seri rồi em êi')
                         }
                     }
+                },
+                moneyTotal: function () {
+                    this.test = '';
+                    return ((this.money + this.tax) * (parseInt(this.sale) / 100)).toFixed(2);
+                    console.log(((parseInt(this.sale) / 100)).toFixed(2))
+                },
+                itemsCart: function () {
+                    this.products.reduce(function (first, last) {
+                        console.log(first, last);
+                        // return first. + last;
+                    });
                 }
+            },
+            methods: {
+                deleteProduct: function (e) {
+                    this.products.splice(e.target.getAttribute('value'), 1)
+                }
+
             }
         })
 
