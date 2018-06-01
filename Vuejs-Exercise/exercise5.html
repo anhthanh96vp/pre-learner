@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Permanent+Marker');
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font: bold 80px/0 'Comic Sans MS', sans-serif;
+        }
+
+        ul {
+            margin: 30px auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: 1fr 1fr 1fr;
+            justify-content: center;
+            list-style-type: none;
+            padding: 5px;
+            width: 80%;
+            max-width: 500px;
+            grid-gap: 5px;
+            background-color: rgba(183, 187, 203, 0.3);
+            border: 15px solid #a3a7b7;
+            border-radius: 15px;
+        }
+
+        ul li {
+            position: relative;
+            padding-top: 100%;
+            text-align: center;
+            background-color: #fff;
+            cursor: pointer;
+        }
+
+        ul li:hover {
+            background-color: rgba(183, 187, 203, 0.3);
+        }
+
+        button {
+            padding: 15px 35px;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 18px;
+            background-color: #3085d6;
+            color: #fff;
+            box-shadow: none;
+            border: 0;
+            border-radius: 3px;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        button:hover,
+        button:focus {
+            background-color: #297dce;
+            outline: none;
+        }
+
+        .fade-enter-active {
+            transition: opacity .5s
+        }
+
+        .fade-enter {
+            opacity: 0
+        }
+
+        .player {
+            position: absolute;
+            top: calc(50% - 40px);
+            left: 0;
+            width: 100%;
+            line-height: 0.8;
+        }
+
+        .red {
+            color: #19a9e5;
+        }
+
+        .red:before {
+            content: 'x';
+        }
+
+        .blue {
+            color: #ee6e73;
+        }
+
+        .blue:before {
+            content: 'o';
+        }
+
+        .modal-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background-color: rgba(0, 0, 0, .4);
+            z-index: 1000;
+        }
+
+        .modal {
+            font-size: 36px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            margin: 100px auto;
+            padding: 20px;
+            width: 450px;
+            max-width: 100%;
+            background: rgb(255, 255, 255);
+            min-height: 200px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        .modal p {
+            margin: 45px 0 30px 0;
+        }
+
+        .modal button {
+            margin: 30px 0;
+        }
+
+        @media all and (max-width: 500px) {
+            .fa {
+                top: calc(50% - 25px);
+                font-size: 50px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <ul>
+            <li>
+                <b class="player blue"></b>
+            </li>
+
+            <li>
+                <b class="player red"></b>
+            </li>
+
+        </ul>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                gird: []
+            },
+            methods
+        })
+    </script>
+</body>
+
+</html>
