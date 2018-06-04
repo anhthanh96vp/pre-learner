@@ -14,6 +14,10 @@
 
 <body>
     <div class="container" id="app">
+        <!-- ở đây ta dùng shorthand `:key` thay vì `v-bind:key` -->
+        <div v-for="item in items">
+            {{item}}
+        </div>
         <div class="row">
             <div class="col-md-12">
                 <table class="table">
@@ -27,7 +31,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="(user, index) in users" v-if="user.active">
+                        <tr v-for="(user, index) in users" :key="user.id">
                             <th scope="row">{{ index }}</th>
                             <td>{{ user.name }}</td>
                             <td>{{ user.email }}</td>
@@ -65,7 +69,8 @@
                     { name: 'Đinh Mạnh Dũng', email: 'dungdm@allaravel.com', phone: '0904123456', location: 'Nam Định', active: 0 },
                     { name: 'Trần Thanh Phương', email: 'phuongtt@allaravel.com', phone: '0904123456', location: 'Hà Nội', active: 0 },
                     { name: 'Trần Văn Tùng', email: 'tungtv@allaravel.com', phone: '0904123456', location: 'HCM', active: 1 }
-                ]
+                ],
+                items: ['aaa', 'bbb', 'ccc', 'ddd', 'eee', 'ggg']
             }
         })
     </script>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>freeze</title>
+</head>
+
+<body>
+    <div id="app">
+        <p>{{ foo }}</p>
+        <!-- foo sẽ không được cập nhật! -->
+        <button @click="foo = 'baz'">Cập nhật đi chứ</button>
+    </div>
+
+    <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+
+
+     <!-- Ngoại lệ duy nhất ở đây là việc sử dụng Object.freeze(). Object.freeze() ngăn không cho những thuộc tính sẵn có bị chỉnh -->
+    <!-- sửa, cũng có nghĩa là hệ thống reactivity không thể theo dõi các thay đổi xảy ra. -->
+    <script>
+        var obj = {
+            foo: 'bar'
+        }
+
+        Object.freeze(obj)
+
+        new Vue({
+            el: '#app',
+            data: obj
+        })
+    </script>
+
+
+</body>
+
+</html>
