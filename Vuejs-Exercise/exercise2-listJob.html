@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Example</title>
+    <title>Todo-list</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -87,7 +87,7 @@
                 <button type="submit" class="btn btn-danger" v-on:click="addJob">Thêm</button>
             </div>
             <label for="seach">Seach tên công việc</label>
-            <input id="seach" type="text" class="form-control" v-model="keyword" v-on:keyup.enter="seachJob" placeholder="Seach">
+            <input id="seach" type="text" class="form-control" v-model="seachJob" placeholder="Seach">
             <div class="container main">
                 <table class="table">
                     <table id="myTable" class=" table table-hover container">
@@ -114,7 +114,6 @@
                                             <div class="modal-content">
                                                 <div class="modal-header bg-success">
                                                     <h5 class="modal-title text-light" id="exampleModalLabel">Chỉnh sửa công việc</h5>
-
                                                 </div>
                                                 <div class="modal-body row">
                                                     <div class="col-md-12">
@@ -150,7 +149,6 @@
                                         </div>
                                     </div>
                                     <button type="button" class="btn btn-info" v-on:click.lazy="deleteJob(index)">Xóa</button>
-
                                 </td>
                             </tr>
                         </tbody>
@@ -163,7 +161,21 @@
 
 
 
+    <!-- <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyB4SXoiSdQ5zxq8gRV0O7dCdKw00khMG0E",
+            authDomain: "todolist-vuejs-59689.firebaseapp.com",
+            databaseURL: "https://todolist-vuejs-59689.firebaseio.com",
+            projectId: "todolist-vuejs-59689",
+            storageBucket: "todolist-vuejs-59689.appspot.com",
+            messagingSenderId: "1058921195389"
+        };
+        firebase.initializeApp(config);
+    </script> -->
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
@@ -183,7 +195,7 @@
                 editPriority: '',
                 editDescription: '',
                 sttNumber: '',
-                keyword: '',
+                seachJob: '',
                 test: false,
                 jobAll: [
                     { title: 'HTML', status: 'Hoàn thành', description: 'Đã ra phiên bản HTML5', priority: 'D' },
@@ -242,11 +254,15 @@
                     }
                     $('#exampleModal').modal('hide');
 
-                },
-                seachJob: function () {
-                    this.jobAll = this.jobAll.filter(function (item) { return item.title.match(vm.keyword) });
-
                 }
+            },
+            watch: {
+                seachJob: _.debounce( function (seachJob) {
+                    var vm = this;
+                    setTimeout(function () {
+                        vm.jobAll = vm.jobAll.filter(function (item) { return item.title.match(vm.seachJob.toUpperCase()) });
+                    }, 1000);
+                })
             }
         })
 
