@@ -100,7 +100,7 @@
                             <th>Action</th>
                         </thead>
                         <tbody>
-                            <tr class="text-center" v-for="(job, index) in jobAll">
+                            <tr class="text-center" v-for="(job, index) in jobAll" v-if="job.active">
                                 <td>{{ index +1 }}</td>
                                 <td>{{job.title}}</td>
                                 <td>{{job.status}}</td>
@@ -198,11 +198,11 @@
                 seachJob: '',
                 test: false,
                 jobAll: [
-                    { title: 'HTML', status: 'Hoàn thành', description: 'Đã ra phiên bản HTML5', priority: 'D' },
-                    { title: 'CSS', status: 'Hoàn thành', description: 'Đã ra phiên bản CSS3', priority: 'C' },
-                    { title: 'Javascript', status: 'Chưa hoàn thành', description: 'Đã ra phiên bản ES8', priority: 'A' },
-                    { title: 'Bootstrap', status: 'Chưa hoàn thành', description: 'Đã ra phiên bản 4.1', priority: 'C' },
-                    { title: 'Vuejs', status: 'Chưa hoàn thành', description: 'Vẫn đang ngáo', priority: 'A+' }
+                    { title: 'HTML', status: 'Hoàn thành', description: 'Đã ra phiên bản HTML5', priority: 'D', active: true },
+                    { title: 'CSS', status: 'Hoàn thành', description: 'Đã ra phiên bản CSS3', priority: 'C', active: true },
+                    { title: 'Javascript', status: 'Chưa hoàn thành', description: 'Đã ra phiên bản ES8', priority: 'A', active: true },
+                    { title: 'Bootstrap', status: 'Chưa hoàn thành', description: 'Đã ra phiên bản 4.1', priority: 'C', active: true },
+                    { title: 'Vuejs', status: 'Chưa hoàn thành', description: 'Vẫn đang ngáo', priority: 'A+', active: true }
                 ],
                 priorityAll: [
                     'A+', 'A', 'B', 'C', 'D'
@@ -257,11 +257,23 @@
                 }
             },
             watch: {
-                seachJob: _.debounce( function (seachJob) {
+                seachJob: _.debounce(function (seachJob) {
                     var vm = this;
                     setTimeout(function () {
-                        vm.jobAll = vm.jobAll.filter(function (item) { return item.title.match(vm.seachJob.toUpperCase()) });
+                        vm.jobAll.forEach(function (element) {
+                            var keyword = element.title.indexOf(vm.seachJob);
+                            if (keyword < 0) {
+                                return element.active = false;
+                            }
+                        });
                     }, 1000);
+                    if (vm.seachJob == '') {
+                        setTimeout(function () {
+                            vm.jobAll.forEach(function (e) {
+                                e.active = true;
+                            })
+                        }, 1000);
+                    }
                 })
             }
         })
