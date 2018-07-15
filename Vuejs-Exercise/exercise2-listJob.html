@@ -100,6 +100,7 @@
                             <th>Action</th>
                         </thead>
                         <tbody>
+
                             <tr class="text-center" v-for="(job, index) in jobAll" v-if="job.active">
                                 <td>{{ index +1 }}</td>
                                 <td>{{job.title}}</td>
@@ -212,16 +213,17 @@
                 ]
             },
             methods: {
-                addJob: function () {
+            	 addJob: function () {
                     let objectJob = {};
                     objectJob.title = this.title;
                     objectJob.status = this.status;
                     objectJob.priority = this.priority;
                     objectJob.description = this.description;
+                   	objectJob.active = true
                     if (objectJob.title == '' || objectJob.status == '' || objectJob.priority == '' || objectJob.description == '') {
                         return this.test = false;
                     } else {
-                        this.jobAll.push(objectJob);
+                         this.jobAll.push(objectJob);
                         return this.test = true;
                     }
                 },
@@ -261,18 +263,21 @@
                     var vm = this;
                     setTimeout(function () {
                         vm.jobAll.forEach(function (element) {
-                            var keyword = element.title.indexOf(vm.seachJob);
-                            if (keyword < 0) {
+                        	let seachJob = vm.seachJob.toLowerCase()
+                        	let titleJobList = element.title.toLowerCase()
+                            let keyword = titleJobList.indexOf(seachJob);
+                            if (keyword <= -1) {
                                 return element.active = false;
                             }
+                            return element.active = true;
                         });
-                    }, 1000);
+                    }, 0);
                     if (vm.seachJob == '') {
                         setTimeout(function () {
                             vm.jobAll.forEach(function (e) {
                                 e.active = true;
                             })
-                        }, 1000);
+                        }, 0);
                     }
                 })
             }
